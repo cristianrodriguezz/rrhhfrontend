@@ -4,7 +4,7 @@ import CandidateForm from "../components/CandidateForm"
 const UploadCandidate = () => {
   return (
     <div >
-      <CandidateForm/>
+      <CandidateForm user_id={1}/>
     </div>
   )
 }
