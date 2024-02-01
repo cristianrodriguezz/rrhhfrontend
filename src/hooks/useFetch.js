@@ -6,6 +6,7 @@ export const useFetchCandidates = ({ user_id, limit, offset, q }) => {
   
   const URLCandidates = `${URL}api/candidates/get-candidates?user_id=${user_id}&limit=${limit}&offset=${offset}&q=${q}`
   const [candidates, setCandidates] = useState([])
+  const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -15,7 +16,8 @@ export const useFetchCandidates = ({ user_id, limit, offset, q }) => {
       const response = await fetch(URLCandidates);
       const data = await response.json();
       setLoading(false)
-      setCandidates(data)
+      setTotalPages(parseInt(data.totalPages))
+      setCandidates(data.data)
     } catch (error) {
       console.log('Error fetching photos:', error)
       setError('Error fetching photos:', error)
@@ -29,7 +31,7 @@ export const useFetchCandidates = ({ user_id, limit, offset, q }) => {
     getCandidates()
   },[user_id, limit, offset, q])
 
-  return { candidates, loading, error}
+  return { candidates, totalPages, loading, error}
 
 }
 

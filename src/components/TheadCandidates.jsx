@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types'
 
 const TheadCandidates = ({ tableHeader }) => {
   return (
@@ -12,5 +12,9 @@ const TheadCandidates = ({ tableHeader }) => {
   </tr>
   )
 }
+TheadCandidates.propTypes = {
+  tableHeader: PropTypes.array,
+}
+
 
 export default TheadCandidates

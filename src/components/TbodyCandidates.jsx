@@ -1,5 +1,5 @@
+import  PropTypes  from 'prop-types'
 
-// eslint-disable-next-line react/prop-types
 const TbodyCandidates = ({ candidates }) => {
   
   return (
@@ -18,7 +18,10 @@ const TbodyCandidates = ({ candidates }) => {
         </tr>
       ))}
     </>
-  );
-};
+  )
+}
+TbodyCandidates.propTypes = {
+  candidates: PropTypes.array,
+}
 
 export default TbodyCandidates;

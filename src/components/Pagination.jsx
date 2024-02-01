@@ -38,7 +38,7 @@ function Pagination(props) {
 
   useEffect(() => {
     gotoPage(1);
-  }, []);
+  }, [])
 
   const gotoPage = (page) => {
     const currentPageValue = Math.max(0, Math.min(page, totalPages));
@@ -123,7 +123,7 @@ function Pagination(props) {
         {pages.map((page, index) => {
           if (page === LEFT_PAGE)
             return (
-              <li key={index} className="flex items-center justify-center px-3 h-8 leading-tighbg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
+              <li key={index} onClick={handleMoveLeft} className="flex items-center justify-center px-3 h-8 leading-tighbg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                 <a
                   className="page-link"
                   href="#"
@@ -138,7 +138,7 @@ function Pagination(props) {
 
           if (page === RIGHT_PAGE)
             return (
-              <li key={index} className="flex items-center justify-center px-3 h-8 leading-tighbg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
+              <li key={index} onClick={handleMoveRight} className="flex items-center justify-center px-3 h-8 leading-tighbg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                 <a
                   className="page-link"
                   href="#"

@@ -8,4 +8,5 @@ export const tableHeader = [
     "Posición",
     "Disponibilidad",
     "Localidad",
+    "Estado"
 ]
