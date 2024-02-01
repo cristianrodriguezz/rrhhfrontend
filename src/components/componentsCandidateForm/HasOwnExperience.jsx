@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const HasOwnExperience = ({ formik }) => {
+const HasOwnExperience = ({ formik, className }) => {
   return (
     <>
       <label htmlFor="has_work_experience">¿Tiene experiencia?</label>
@@ -11,6 +11,7 @@ const HasOwnExperience = ({ formik }) => {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         checked={formik.values.has_work_experience}
+        className={className}
         />
     </>
   )

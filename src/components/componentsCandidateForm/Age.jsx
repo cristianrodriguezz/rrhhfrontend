@@ -1,17 +1,20 @@
 import PropTypes from 'prop-types';
 
-const Age = ({ formik }) => {
+const Age = ({ formik, className }) => {
   return (
     <>
       <div >
         <label htmlFor="age">Edad:</label>
         <input
-          type="text"
+          type="number"
           id="age"
           name="age"
+          min={18}
+          max={80}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.age}
+          className={className}
           />
       </div>
       {
@@ -26,7 +29,8 @@ const Age = ({ formik }) => {
 }
 
 Age.propTypes = {
-  formik: PropTypes.object, 
+  formik: PropTypes.object,
+  className: PropTypes.string
 }
 
 export default Age

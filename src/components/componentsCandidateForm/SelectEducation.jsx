@@ -8,7 +8,7 @@ const SelectEducation = ({ formik } ) => {
   return (
     <>
       <label htmlFor="education_id">
-      Seleccionar su disponibilidad
+      Seleccionar su educación
       <select
         id="education_id"
         name="education_id"

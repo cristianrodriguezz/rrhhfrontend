@@ -2,12 +2,9 @@ import { useState, useEffect } from 'react'
 
 const URL = import.meta.env.VITE_BACKEND_URL
 
-export const useFetchCandidates = ({ user_id }) => {
-  console.log(user_id);
-
-
+export const useFetchCandidates = ({ user_id, limit, offset, q }) => {
   
-  const URLCandidates = `${URL}api/candidates/get-candidates?user_id=${user_id}`
+  const URLCandidates = `${URL}api/candidates/get-candidates?user_id=${user_id}&limit=${limit}&offset=${offset}&q=${q}`
   const [candidates, setCandidates] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -20,7 +17,7 @@ export const useFetchCandidates = ({ user_id }) => {
       setLoading(false)
       setCandidates(data)
     } catch (error) {
-      console.error('Error fetching photos:', error)
+      console.log('Error fetching photos:', error)
       setError('Error fetching photos:', error)
       setLoading(true)
     }finally{
@@ -30,7 +27,7 @@ export const useFetchCandidates = ({ user_id }) => {
 
   useEffect( () => {
     getCandidates()
-  },[user_id])
+  },[user_id, limit, offset, q])
 
   return { candidates, loading, error}
 
@@ -52,7 +49,6 @@ export const useFetchEducation = () => {
       const response = await fetch(URLEducaction);
       const {data} = await response.json();
       setLoading(false)
-      console.log(data);
       setEducations(data)
     } catch (error) {
       console.error('Error fetching education:', error)
@@ -86,7 +82,7 @@ export const useFetchPositions = () => {
       const response = await fetch(URLEducaction);
       const {data} = await response.json();
       setLoading(false)
-      console.log(data);
+
       setPositions(data)
     } catch (error) {
       console.error('Error fetching education:', error)
@@ -120,7 +116,7 @@ export const useFecthAvailabilities = () => {
       const response = await fetch(URLEducaction);
       const {data} = await response.json();
       setLoading(false)
-      console.log(data);
+
       setAvailabilities(data)
     } catch (error) {
       console.error('Error fetching education:', error)
@@ -153,7 +149,7 @@ export const useFecthLocations = () => {
       const response = await fetch(URLEducaction);
       const {data} = await response.json();
       setLoading(false)
-      console.log(data);
+
       setLocations(data)
     } catch (error) {
       console.error('Error fetching education:', error)

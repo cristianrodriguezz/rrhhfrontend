@@ -67,7 +67,7 @@ const dropzoneStyles = {
 }
 
 DragAndDropCv.propTypes = {
-  onFileUpload: PropTypes.string,
+  onFileUpload: PropTypes.func,
   formik: PropTypes.object, 
 }
 

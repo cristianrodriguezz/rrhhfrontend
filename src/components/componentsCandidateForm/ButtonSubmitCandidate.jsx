@@ -2,11 +2,11 @@ import Loading from "../Loading"
 import PropTypes from 'prop-types';
 
 
-const ButtonSubmitCandidate = ({ formik }) => {
+const ButtonSubmitCandidate = ({ formik, className }) => {
 
   return (
 
-    <button type="submit" disabled={formik.isSubmitting}>
+    <button type="submit" disabled={formik.isSubmitting} className={className}>
       {formik.isSubmitting ? <Loading/> : 'Enviar' }
     </button>
     
@@ -14,7 +14,8 @@ const ButtonSubmitCandidate = ({ formik }) => {
 }
 
 ButtonSubmitCandidate.propTypes = {
-  formik: PropTypes.object, 
+  formik: PropTypes.object,
+  className: PropTypes.string 
 }
 
 
