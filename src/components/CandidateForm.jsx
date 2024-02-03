@@ -14,6 +14,7 @@ import PhoneNumber from './componentsCandidateForm/PhoneNumber';
 import HasOwnTransport from './componentsCandidateForm/HasOwnTransport';
 import HasOwnExperience from './componentsCandidateForm/HasOwnExperience';
 import { handleSubmit, initialValues } from '../utils/formCandidateConfig';
+import Cuil from './componentsCandidateForm/Cuil';
 
 const CandidateForm = ({ user_id }) => {
 
@@ -35,6 +36,7 @@ const CandidateForm = ({ user_id }) => {
       <Name formik={formik}/>
       <LastName formik={formik}/>
       <Age formik={formik}/>
+      <Cuil formik={formik}/>
       <PhoneNumber formik={formik}/>
       <HasOwnTransport formik={formik}/>
       <HasOwnExperience formik={formik}/>

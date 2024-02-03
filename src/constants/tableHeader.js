@@ -3,10 +3,12 @@ export const tableHeader = [
     "Apellido",
     "Edad",
     "Teléfono",
+    "CUIL",
     "Movilidad",
     "Experiencia",
     "Posición",
     "Disponibilidad",
     "Localidad",
-    "Estado"
+    "Estado",
+    "Acciones"
 ]

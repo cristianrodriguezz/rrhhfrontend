@@ -13,10 +13,14 @@ export default {
         'primary': '#ffffff',
         'secondary': '#e5e7eb',
         'three': '#9ca3af',
-      }
+      },
+      fontFamily: {
+        rubik: ["Rubik", "sans-serif"],
+      },
     },
   },
   plugins: [
+    // eslint-disable-next-line no-undef
     require('flowbite/plugin')
 ]
 }

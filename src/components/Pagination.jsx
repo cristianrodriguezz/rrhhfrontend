@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useStoreCheckbox, useStoreResetCheckBoxAll } from "../hooks/useStore";
 
 const LEFT_PAGE = "LEFT";
 const RIGHT_PAGE = "RIGHT";
@@ -25,7 +26,9 @@ function Pagination(props) {
     className = ''
   } = props;
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1)
+  const { resetCheckboxes } = useStoreCheckbox()
+  const { resetCheckbox } = useStoreResetCheckBoxAll()
 
   const pageLimitValue = typeof pageLimit === "number" ? pageLimit : 30;
   const totalRecordsValue = typeof totalRecords === "number" ? totalRecords : 0;
@@ -53,21 +56,42 @@ function Pagination(props) {
     setCurrentPage(currentPageValue);
     onPageChanged(paginationData);
   };
+  function scrollToTop() {
+    const element = document.documentElement; 
+
+
+    const scrollOptions = {
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'start',
+  };
+
+    element.scrollIntoView(scrollOptions);
+}
 
   const handleClick = (page, evt) => {
     evt.preventDefault();
     gotoPage(page);
+    scrollToTop()
+    resetCheckboxes()
+    resetCheckbox()
   };
 
   const handleMoveLeft = (evt) => {
     evt.preventDefault();
     gotoPage(currentPage - pageNeighboursValue * 2 - 1);
+    scrollToTop()
+    resetCheckboxes()
+    resetCheckbox()
   };
 
   const handleMoveRight = (evt) => {
     evt.preventDefault();
     gotoPage(currentPage + pageNeighboursValue * 2 + 1);
-  };
+    scrollToTop()
+    resetCheckboxes()
+    resetCheckbox()
+  }
 
   const fetchPageNumbers = () => {
     const totalNumbers = pageNeighboursValue * 2 + 3;
@@ -118,7 +142,7 @@ function Pagination(props) {
   const pages = fetchPageNumbers();
 
   return (
-    <nav aria-label="pagination">
+    <nav aria-label="pagination" className="flex items-center justify-center my-3">
       <ul className={`${className}`}>
         {pages.map((page, index) => {
           if (page === LEFT_PAGE)
@@ -126,7 +150,7 @@ function Pagination(props) {
               <li key={index} onClick={handleMoveLeft} className="flex items-center justify-center px-3 h-8 leading-tighbg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                 <a
                   className="page-link"
-                  href="#"
+                  href="#section1"
                   aria-label="Previous"
                   onClick={handleMoveLeft}
                 >
@@ -141,7 +165,7 @@ function Pagination(props) {
               <li key={index} onClick={handleMoveRight} className="flex items-center justify-center px-3 h-8 leading-tighbg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                 <a
                   className="page-link"
-                  href="#"
+                  href="#section1"
                   aria-label="Next"
                   onClick={handleMoveRight}
                 >
@@ -158,7 +182,7 @@ function Pagination(props) {
             >
               <a
                 className="flex items-center justify-center px-3 h-8 leading-tighbg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
-                href="#"
+                href="#section1"
                 onClick={(e) => handleClick(page, e)}
               >
                 {page}

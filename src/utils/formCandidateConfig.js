@@ -2,6 +2,7 @@ export const initialValues = {
   first_name: '',
   last_name: '',
   age: undefined,
+  cuil: undefined,
   phone_number: undefined,
   has_own_transport: false,
   has_work_experience: false,
