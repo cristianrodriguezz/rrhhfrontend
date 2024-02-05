@@ -4,16 +4,18 @@ import { useFetchCandidates } from "../hooks/useFetch"
 import { useDebounce } from "../hooks/useDebounce"
 import Search from "../components/Search"
 import Table from "../components/Table"
+import { useFilters } from "../hooks/useFilter"
+import Filters from "../components/Filters"
+import FiltersAddContainer from "../components/FiltersAddContainer"
 
 const TableCandidates = () => {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [inputName, setInputName] = useState("")
-  const [asd, asdd] = useState("")
+  const [currentPage, setCurrentPage] = useState(0)
+  const [inputName, setInputName] = useState('')
   const { debouncedValue, loadingDebounce } = useDebounce(inputName, 500)
   const { candidates, totalPages, loading, error } = useFetchCandidates({
     user_id: 1,
-    limit: currentPage,
-    offset: 20,
+    limit: 10,
+    currentPage,
     q: debouncedValue,
   })
 
@@ -22,21 +24,24 @@ const TableCandidates = () => {
   }
 
   const handleSearchNameInputChange = (value) => {
-    setInputName(value);
+    setInputName(value)
   }
-  const handleSearch = (value) => {
-    asdd(value);
-  }
-  console.log(asd);
+
+  const { filterCandidate } = useFilters()
+  const candidateFiltered = filterCandidate(candidates);
+
 
   if (!loading) return <p>Cargando...</p>
   if (error) return <p>Error: {error}</p>
 
   return (
     <div className="relative overflow-x-auto m-28">
-      <Search onInputChange={handleSearchNameInputChange} loading={loadingDebounce} type='text' placeholder='Buscar por nombre y apellido...'/>
-      {/* <Search onInputChange={handleSearch} loading={loadingDebounce} type='text' placeholder='Buscar por nombre y apellido...'/> */}
-      <Table candidates={candidates} className='px-3 py-2'/>
+      <div className="flex gap-6 text-gray-200">
+        <Search onInputChange={handleSearchNameInputChange} loading={loadingDebounce} type='text' placeholder='Buscar por nombre y apellido...'/>
+        <Filters setCurrentPage={setCurrentPage}/>
+      </div>
+      <FiltersAddContainer/>
+      <Table candidates={candidateFiltered}/>
       <Pagination
         totalRecords={totalPages}
         pageLimit={1}

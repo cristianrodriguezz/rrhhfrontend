@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types'
 import { useStoreCheckbox, useStoreResetCheckBoxAll } from '../hooks/useStore';
+import ArrowIcon from './icons/ArrowIcon';
 
 const TheadCandidates = ({ tableHeader, className }) => {
   const { checkboxIds, toggleCheckbox, resetCheckboxes } = useStoreCheckbox()
   const { checkbox, checkboxAdd, resetCheckbox } = useStoreResetCheckBoxAll()
 
   const handleChangeCheckbox = (e) => {
-    let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+    let checkboxes = document.getElementsByClassName('candidatescheckbox')
     let isCheckedBoxAll = document.getElementById('checkbox-all-search').checked
 
     if (e.target.checked) {
-      checkboxes.forEach(function (checkbox) {
+      Array.from(checkboxes).forEach(function (checkbox) {
         checkbox.checked = true
         const idValue = parseInt(checkbox.id.split(/\{|\}/)[1])
         
@@ -18,7 +19,7 @@ const TheadCandidates = ({ tableHeader, className }) => {
       })
       checkboxAdd(isCheckedBoxAll)
     } else {
-      checkboxes.forEach(function (checkbox) {
+      Array.from(checkboxes).forEach(function (checkbox) {
         checkbox.checked = false
       })
       resetCheckboxes()
@@ -45,8 +46,10 @@ const TheadCandidates = ({ tableHeader, className }) => {
         </div>
       </th>
       {tableHeader.map((label) => (
-        <th key={label} scope="col" className={className}>
-          {label}
+        <th key={label} scope="col" className={`${className}`}>
+          <div className='flex'>
+            {label} <ArrowIcon/>
+          </div>
         </th>
       ))}
     </tr>

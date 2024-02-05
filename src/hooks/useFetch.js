@@ -1,10 +1,22 @@
 import { useState, useEffect } from 'react'
+import { useStoreFilterBackend } from './useStore';
 
 const URL = import.meta.env.VITE_BACKEND_URL
 
-export const useFetchCandidates = ({ user_id, limit, offset, q }) => {
+export const useFetchCandidates = ({ user_id, limit, currentPage, q }) => {
+
+  const filterWhere = [];
+
+  const { myFilter } = useStoreFilterBackend();
+
+  for (const key in myFilter) {
+    filterWhere.push(`${key}=${myFilter[key]}`);
+  }
   
-  const URLCandidates = `${URL}api/candidates/get-candidates?user_id=${user_id}&limit=${limit}&offset=${offset}&q=${q}`
+  const filterQueryString = filterWhere.join('&');
+  const URLCandidates = `${URL}api/candidates/get-candidates?user_id=${user_id}&limit=${limit}&offset=${currentPage * limit}&q=${q}&${filterQueryString}`;
+
+  
   const [candidates, setCandidates] = useState([])
   const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(false)
@@ -29,7 +41,7 @@ export const useFetchCandidates = ({ user_id, limit, offset, q }) => {
 
   useEffect( () => {
     getCandidates()
-  },[user_id, limit, offset, q])
+  },[user_id, limit, currentPage, q, myFilter])
 
   return { candidates, totalPages, loading, error}
 

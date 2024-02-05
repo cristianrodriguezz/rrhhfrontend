@@ -25,3 +25,53 @@ export const useStoreResetCheckBoxAll = create((set) => ({
   resetCheckbox: () => set({ checkbox: false }),
 }))
 
+export const useStoreFilterFront = create((set) => ({
+  filters: {
+    location: 'all',
+    current_position: 'all',
+    status: "all",
+    cuil: 'all',
+    has_work_experience: 'all',
+    has_own_transport: 'all',
+    age: 'all',
+    availability_schedule: 'all'
+  },
+  setFilters: (newFilters) => set({ filters: newFilters }),
+}))
+
+export const useStoreFilterBackend = create((set) => ({
+  // Definir el estado inicial con un objeto
+  myFilter: {
+
+  },
+
+  // Función para agregar una propiedad a myObject
+  addPropertyToMyFilter: (propertyName, propertyValue) =>
+    set((state) => ({
+      myFilter: {
+        ...state.myFilter,
+        [propertyName]: propertyValue,
+      },
+    })),
+  deletePropertyFromMyFilter: (propertyName) =>
+    set((state) => {
+      // eslint-disable-next-line no-unused-vars
+      const { [propertyName]: _, ...rest } = state.myFilter; // Desestructurar y omitir la propiedad
+      return { myFilter: rest };
+    }),
+  deleteFilters: () => set({ myFilter: {} }),
+
+}));
+
+
+// 'age': '',
+// 'phone_number': '',
+// 'has_own_transport': '',
+// 'has_work_experience': '',
+// 'education': '',
+// 'availability_schedule': '',
+// 'cuil': '',
+// 'location': '',
+// 'status': '',
+// 'current_position': ''
+

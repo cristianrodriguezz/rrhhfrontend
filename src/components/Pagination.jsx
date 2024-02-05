@@ -26,7 +26,7 @@ function Pagination(props) {
     className = ''
   } = props;
 
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(0)
   const { resetCheckboxes } = useStoreCheckbox()
   const { resetCheckbox } = useStoreResetCheckBoxAll()
 
@@ -44,7 +44,7 @@ function Pagination(props) {
   }, [])
 
   const gotoPage = (page) => {
-    const currentPageValue = Math.max(0, Math.min(page, totalPages));
+    const currentPageValue = Math.max(0, Math.min(page - 1, totalPages - 1));
 
     const paginationData = {
       currentPage: currentPageValue,
@@ -56,18 +56,18 @@ function Pagination(props) {
     setCurrentPage(currentPageValue);
     onPageChanged(paginationData);
   };
+
   function scrollToTop() {
     const element = document.documentElement; 
-
 
     const scrollOptions = {
       behavior: 'smooth',
       block: 'start',
       inline: 'start',
-  };
+    };
 
     element.scrollIntoView(scrollOptions);
-}
+  }
 
   const handleClick = (page, evt) => {
     evt.preventDefault();
@@ -178,7 +178,7 @@ function Pagination(props) {
           return (
             <li
               key={index}
-              className={`${currentPage === page ? "bg-gray-800" : ""}`}
+              className={`${currentPage + 1 === page ? "bg-gray-800" : ""}`}
             >
               <a
                 className="flex items-center justify-center px-3 h-8 leading-tighbg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
