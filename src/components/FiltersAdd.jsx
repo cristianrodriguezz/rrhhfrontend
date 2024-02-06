@@ -1,19 +1,22 @@
 import { nameFilterFormater } from "../constants/nameFilterFormater";
-import { useStoreFilterBackend } from "../hooks/useStore";
+import { useStoreCuil, useStoreFilterBackend, useStorePhoneNumber } from "../hooks/useStore";
 
 
 const FiltersAdd = ( { filter, properyFilter, id } ) => {
 
   const { deletePropertyFromMyFilter } = useStoreFilterBackend();
+  const {setPhoneNumber} = useStorePhoneNumber()
+  const {setCuil} = useStoreCuil()
 
   const handleClickResetFilter = () => {
     let input = document.getElementById(id)
     input.value = ''
-    console.log('asdasd')
     deletePropertyFromMyFilter(properyFilter)
+    setPhoneNumber(null)
+    setCuil(null)
   }
 
-   const name = id.split('.')[1];
+  const name = id.split('.')[1];
   const nameFilter = nameFilterFormater(name)
 
 

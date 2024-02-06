@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useStoreFilterBackend } from "../hooks/useStore";
+import { useStoreCuil, useStoreFilterBackend, useStorePhoneNumber } from "../hooks/useStore";
 import PhoneNumberFilter from "./filters/PhoneNumberFilter";
 import CuilFilter from "./filters/CuilFilter";
 import PropTypes from 'prop-types'
@@ -8,19 +7,9 @@ import PropTypes from 'prop-types'
 const Filters = ( { setCurrentPage } ) => {
   const { addPropertyToMyFilter, myFilter, deleteFilters, deletePropertyFromMyFilter } = useStoreFilterBackend();
 
-  const [phoneNumber, setPhoneNumber] = useState(null)
-  const [cuil, setCuil] = useState(null)
+  const {phoneNumber, setPhoneNumber} = useStorePhoneNumber()
 
-  const handleChangePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value)
-  }
-
-  const handleChangeFilterCuil = (e) => {
-    setCuil(e.target.value)
-  }
-  
-
-  console.log(myFilter);
+  const {cuil, setCuil} = useStoreCuil()
 
   const handleFilter = (event) => {
     event.preventDefault()
@@ -47,17 +36,23 @@ const Filters = ( { setCurrentPage } ) => {
       setCuil(null)
       deleteFilters()
     }
-  
+
+    const isEmpty = (obj) => {
+      return Object.keys(obj).length === 0;
+    }
 
   return (
     <section>
       <aside className="flex gap-5">
         <form onSubmit={handleFilter} className="flex gap-2">
-          <PhoneNumberFilter handleChange={handleChangePhoneNumber} />
-          <CuilFilter handleChange={handleChangeFilterCuil}/>
-          <button type="submit">Filtrar</button>
+          <PhoneNumberFilter  />
+          <CuilFilter/>
+          <button type="submit" className="bg-slate-700 px-3 rounded-xl">Filtrar</button>
         </form>
-        <button onClick={handleClickResetFilter}>Reset</button>
+        {
+          !isEmpty(myFilter) ? <button className="flex gap-3 items-center justify-center border-dashed border px-3 rounded-xl" onClick={handleClickResetFilter}>Reset <span>x</span></button> : null
+        }
+
       </aside>
     </section>
   );

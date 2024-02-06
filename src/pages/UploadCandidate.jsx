@@ -3,7 +3,7 @@ import CandidateForm from "../components/CandidateForm"
 
 const UploadCandidate = () => {
   return (
-    <div >
+    <div className="flex justify-center items-center">
       <CandidateForm user_id={1}/>
     </div>
   )

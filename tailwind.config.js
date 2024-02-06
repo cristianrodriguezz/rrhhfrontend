@@ -8,11 +8,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'body': '#111927',
+        'body': '#ffc0cb',
         'card': '#1f2a37',
         'primary': '#ffffff',
         'secondary': '#e5e7eb',
         'three': '#9ca3af',
+        'error': '#f80000'
       },
       fontFamily: {
         rubik: ["Rubik", "sans-serif"],

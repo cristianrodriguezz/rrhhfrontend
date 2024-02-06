@@ -63,6 +63,16 @@ export const useStoreFilterBackend = create((set) => ({
 
 }));
 
+export const useStorePhoneNumber = create((set) => ({
+  phoneNumber: null,
+  setPhoneNumber: (newPhoneNumber) => set({ phoneNumber: newPhoneNumber }),
+}));
+export const useStoreCuil = create((set) => ({
+  cuil: null,
+  setCuil: (cuil) => set({ cuil: cuil }),
+}));
+
+
 
 // 'age': '',
 // 'phone_number': '',

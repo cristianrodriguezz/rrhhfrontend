@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-const Age = ({ formik, className }) => {
+const Age = ({ formik }) => {
   return (
     <>
       <div >
-        <label htmlFor="age">Edad:</label>
+        <label htmlFor="age"></label>
         <input
           type="number"
           id="age"
@@ -14,16 +14,17 @@ const Age = ({ formik, className }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.age}
-          className={className}
+          className='bg-pink-400 w-13 placeholder:text-slate-900 placeholder:font-medium  text-sm border-body rounded-lg'
+          placeholder='Edad'
           />
+          {
+            formik.touched.age && formik.errors.age 
+            ? 
+            <div className='text-error'>*{formik.errors.age}</div>
+            : 
+            null
+          }
       </div>
-      {
-        formik.touched.age && formik.errors.age 
-        ? 
-        <div className='text-red-500'>{formik.errors.age}</div>
-        : 
-        null
-      }
     </>
   )
 }

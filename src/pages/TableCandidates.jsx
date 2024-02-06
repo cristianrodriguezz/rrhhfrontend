@@ -7,6 +7,7 @@ import Table from "../components/Table"
 import { useFilters } from "../hooks/useFilter"
 import Filters from "../components/Filters"
 import FiltersAddContainer from "../components/FiltersAddContainer"
+import DropDown from "../components/filters/DropDown"
 
 const TableCandidates = () => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -14,7 +15,7 @@ const TableCandidates = () => {
   const { debouncedValue, loadingDebounce } = useDebounce(inputName, 500)
   const { candidates, totalPages, loading, error } = useFetchCandidates({
     user_id: 1,
-    limit: 10,
+    limit: 40,
     currentPage,
     q: debouncedValue,
   })
@@ -42,6 +43,7 @@ const TableCandidates = () => {
       </div>
       <FiltersAddContainer/>
       <Table candidates={candidateFiltered}/>
+
       <Pagination
         totalRecords={totalPages}
         pageLimit={1}

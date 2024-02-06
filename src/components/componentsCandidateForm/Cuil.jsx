@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-const Cuil = ({ formik, className }) => {
+const Cuil = ({ formik }) => {
   return (
     <>
       <div >
-        <label htmlFor="cuil">Cuil:</label>
+        <label htmlFor="cuil"></label>
         <input
           type="number"
           id="cuil"
@@ -12,23 +12,23 @@ const Cuil = ({ formik, className }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.cuil}
-          className={className}
+          placeholder='CUIL solo números'
+          className='bg-pink-400 w-full placeholder:text-slate-900 placeholder:font-medium text-sm border-body rounded-lg'
           />
+        {
+          formik.touched.cuil && formik.errors.cuil 
+          ? 
+          <div className='text-error'>*{formik.errors.cuil}</div>
+          : 
+          null
+        }
       </div>
-      {
-        formik.touched.cuil && formik.errors.cuil 
-        ? 
-        <div className='text-red-500'>{formik.errors.cuil}</div>
-        : 
-        null
-      }
     </>
   )
 }
 
 Cuil.propTypes = {
   formik: PropTypes.object,
-  className: PropTypes.string
 }
 
 export default Cuil

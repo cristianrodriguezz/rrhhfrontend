@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 import { useStoreCheckbox, useStoreResetCheckBoxAll } from '../hooks/useStore';
-import ArrowIcon from './icons/ArrowIcon';
+import ArrowIcon from './icons/ArrowIcon'
+import DropDown from './filters/DropDown';
+import { useState } from 'react';
 
 const TheadCandidates = ({ tableHeader, className }) => {
   const { checkboxIds, toggleCheckbox, resetCheckboxes } = useStoreCheckbox()
@@ -27,10 +29,20 @@ const TheadCandidates = ({ tableHeader, className }) => {
     }
   }
 
-  console.log(checkboxIds)
+  const [mov,setMov] = useState(false)
+
+
+  const filter = (label) => {
+
+    if(label === 'Mov.' && mov === false){
+      setMov(true)
+    }else{
+      setMov(false)
+    }
+  }
 
   return (
-    <tr className='rounded-t-lg'>
+    <tr className='rounded-t-lg relative'>
       <th scope="col" className="p-4">
         <div className="flex items-center">
           <input
@@ -45,13 +57,69 @@ const TheadCandidates = ({ tableHeader, className }) => {
           </label>
         </div>
       </th>
-      {tableHeader.map((label) => (
-        <th key={label} scope="col" className={`${className}`}>
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
           <div className='flex'>
-            {label} <ArrowIcon/>
+            Nombre
+          </div>
+          
+        </th>
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            Apellido
           </div>
         </th>
-      ))}
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            Edad
+          </div>
+        </th>
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            Teléfono
+          </div>
+        </th>
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            CUIL
+          </div>
+        </th>
+        <th onClick={() => filter('Mov.')}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            Mov. <ArrowIcon/>
+          </div>
+          {mov ? <div className='top-12 left-0 absolute'><DropDown/></div>: null}
+        </th>
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            Exp.
+          </div>
+        </th>
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            Posición
+          </div>
+        </th>
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            Disponibilidad
+          </div>
+        </th>
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            Localidad
+          </div>
+        </th>
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            Estado
+          </div>
+        </th>
+        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
+          <div className='flex'>
+            Acciones
+          </div>
+        </th>
+
     </tr>
   );
 };

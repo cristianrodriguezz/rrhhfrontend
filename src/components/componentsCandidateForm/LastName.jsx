@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 const LastName = ({ formik }) => {
   return (
     <>
-      <div>
-        <label htmlFor="last_name">Apellido:</label>
+      <div className='w-full'>
+        <label htmlFor="last_name"></label>
         <input
           type="text"
           id="last_name"
@@ -12,15 +12,17 @@ const LastName = ({ formik }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.last_name}
+          className='bg-pink-400 w-full placeholder:text-slate-900 placeholder:font-medium text-sm border-body rounded-lg'
+          placeholder='Apellido'
           />
+          {
+            formik.touched.last_name && formik.errors.last_name 
+            ? 
+            <div className='text-error'>*{formik.errors.last_name}</div>
+            : 
+            null
+          }
       </div>
-      {
-        formik.touched.last_name && formik.errors.last_name 
-        ? 
-        <div className='text-red-500'>{formik.errors.last_name}</div>
-        : 
-        null
-      }
     </>
   )
 }

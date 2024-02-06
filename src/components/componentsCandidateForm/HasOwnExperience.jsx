@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
 
-const HasOwnExperience = ({ formik, className }) => {
+const HasOwnExperience = ({ formik }) => {
   return (
     <>
-      <label htmlFor="has_work_experience">¿Tiene experiencia?</label>
-      <input
-        type="checkbox"
-        id="has_work_experience"
-        name="has_work_experience"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        checked={formik.values.has_work_experience}
-        className={className}
-        />
+      <label htmlFor="has_work_experience" className='flex items-center justify-center  text-slate-900 font-medium  gap-2  bg-pink-400 w-full  border-body rounded-lg'>¿Tiene experiencia?
+        <input
+          type="checkbox"
+          id="has_work_experience"
+          name="has_work_experience"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          checked={formik.values.has_work_experience}
+          className="size-4 text-pink-500 rounded border-none  bg-pink-500 "
+          />
+        </label>
     </>
   )
 }

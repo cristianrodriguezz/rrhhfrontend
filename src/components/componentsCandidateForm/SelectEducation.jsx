@@ -7,8 +7,8 @@ const SelectEducation = ({ formik } ) => {
 
   return (
     <>
-      <label htmlFor="education_id">
-      Seleccionar su educación
+      <label htmlFor="education_id" className='text-slate-900 font-medium flex gap-1 items-center justify-center'>
+      Educación
       <select
         id="education_id"
         name="education_id"
@@ -17,12 +17,13 @@ const SelectEducation = ({ formik } ) => {
         }}
         onBlur={formik.handleBlur}
         value={formik.values.education_id}
+        className='bg-pink-400 w-full border-none rounded-lg focus:shadow-none focus:ring-transparent'
       >
         <option  hidden defaultValue={undefined}>
           Seleccionar
         </option>
         {educations?.map(({ education_id, education }) => (
-          <option key={education_id} value={parseInt(education_id)}>
+          <option key={education_id} className='text-white' value={parseInt(education_id)}>
             {education}
           </option>
         ))}
@@ -32,7 +33,7 @@ const SelectEducation = ({ formik } ) => {
       {
         formik.touched.education_id && formik.errors.education_id 
         ? 
-        <div className='text-red-500'>{formik.errors.education_id}</div>
+        <div className='text-error'>*{formik.errors.education_id}</div>
         : 
         null
       }

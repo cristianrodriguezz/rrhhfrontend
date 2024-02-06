@@ -7,8 +7,8 @@ const SelectAvailability = ({ formik } ) => {
 
   return (
     <>
-      <label htmlFor="availability_id">
-      Seleccionar su disponibilidad
+      <label htmlFor="availability_id" className='text-slate-900 font-medium flex gap-1 items-center justify-center'>
+      Disponibilidad
       <select
         id="availability_id"
         name="availability_id"
@@ -17,12 +17,13 @@ const SelectAvailability = ({ formik } ) => {
         }}
         onBlur={formik.handleBlur}
         value={formik.values.availability_id}
+        className='bg-pink-400 w-full border-none rounded-lg focus:shadow-none focus:ring-transparent'
       >
         <option  hidden defaultValue={undefined}>
           Seleccionar
         </option>
         {availabilities?.map(({ availability_id, availability_schedule }) => (
-          <option key={availability_id} value={parseInt(availability_id)}>
+          <option key={availability_id} className='text-white' value={parseInt(availability_id)}>
             {availability_schedule}
           </option>
         ))}
@@ -32,7 +33,7 @@ const SelectAvailability = ({ formik } ) => {
       {
         formik.touched.availability_id && formik.errors.availability_id 
         ? 
-        <div className='text-red-500'>{formik.errors.availability_id}</div>
+        <div className='text-error'>*{formik.errors.availability_id}</div>
         : 
         null
       }

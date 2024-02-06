@@ -32,18 +32,27 @@ const CandidateForm = ({ user_id }) => {
   }
 
   return (
-    <form onSubmit={formik.handleSubmit} className='max-w-md mx-auto  text-slate-300'>
-      <Name formik={formik}/>
-      <LastName formik={formik}/>
-      <Age formik={formik}/>
-      <Cuil formik={formik}/>
-      <PhoneNumber formik={formik}/>
-      <HasOwnTransport formik={formik}/>
-      <HasOwnExperience formik={formik}/>
-      <SelectCurrentPosition formik={formik}/>
-      <SelectEducation formik={formik}/>
-      <SelectAvailability formik={formik}/>
-      <SelectLocation formik={formik}/>
+    <form onSubmit={formik.handleSubmit} className='max-w-md m-1 text-slate-900'>
+      <h1 className='text-center font-bold text-3xl my-3'>Recursos Humanos</h1>
+      <div className='flex gap-2 '>
+        <Name formik={formik}/>
+        <LastName formik={formik}/>
+      </div>
+      <div className='flex gap-2 mb-2'>
+        <Age formik={formik}/>
+        <Cuil formik={formik}/>
+        <PhoneNumber formik={formik}/>
+      </div>
+      <div className='flex flex-col gap-2 mb-2'>
+        <HasOwnTransport formik={formik}/>
+        <HasOwnExperience formik={formik}/>
+      </div>
+      <div className='flex flex-col gap-2'>
+        <SelectCurrentPosition formik={formik}/>
+        <SelectEducation formik={formik}/>
+        <SelectAvailability formik={formik}/>
+        <SelectLocation formik={formik}/>
+      </div>
       <DragAndDropCv onFileUpload={handleFileUpload} formik={formik}/>
       {formik.errors.general && <div>{formik.errors.general}</div>}
       <ButtonSubmitCandidate formik={formik}/>
