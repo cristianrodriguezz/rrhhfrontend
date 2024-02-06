@@ -15,6 +15,8 @@ import HasOwnTransport from './componentsCandidateForm/HasOwnTransport';
 import HasOwnExperience from './componentsCandidateForm/HasOwnExperience';
 import { handleSubmit, initialValues } from '../utils/formCandidateConfig';
 import Cuil from './componentsCandidateForm/Cuil';
+import Email from './componentsCandidateForm/Email';
+
 
 const CandidateForm = ({ user_id }) => {
 
@@ -26,7 +28,8 @@ const CandidateForm = ({ user_id }) => {
 
   // Esto lo hacemos para validar que han puesto un curriculum
   const handleFileUpload = (uploadedFile) => {
-    if (uploadedFile && uploadedFile.type === "application/pdf") {
+    console.log(uploadedFile.type.endsWith('jpeg'));
+    if (uploadedFile && (uploadedFile.type === "application/pdf" || uploadedFile.type.endsWith('jpeg') || uploadedFile.type.endsWith('docx'))) {
       formik.setFieldValue("cv", uploadedFile.name);
     } 
   }
@@ -52,10 +55,11 @@ const CandidateForm = ({ user_id }) => {
         <SelectEducation formik={formik}/>
         <SelectAvailability formik={formik}/>
         <SelectLocation formik={formik}/>
+        <Email formik={formik}/>
       </div>
       <DragAndDropCv onFileUpload={handleFileUpload} formik={formik}/>
-      {formik.errors.general && <div>{formik.errors.general}</div>}
       <ButtonSubmitCandidate formik={formik}/>
+      
     </form>
   )
 }

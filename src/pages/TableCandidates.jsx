@@ -7,7 +7,6 @@ import Table from "../components/Table"
 import { useFilters } from "../hooks/useFilter"
 import Filters from "../components/Filters"
 import FiltersAddContainer from "../components/FiltersAddContainer"
-import DropDown from "../components/filters/DropDown"
 
 const TableCandidates = () => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -51,6 +50,7 @@ const TableCandidates = () => {
         onPageChanged={handlePageChange}
         className="inline-flex -space-x-px text-sm"
       />
+
     </div>
   )
 }

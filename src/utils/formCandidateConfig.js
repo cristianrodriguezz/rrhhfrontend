@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify'
+
 export const initialValues = {
   first_name: '',
   last_name: '',
@@ -27,13 +29,42 @@ export const handleSubmit = async (values, user_id, { setSubmitting, setErrors }
       body: JSON.stringify(values),
     });
 
+    if(response.status === 409) {
+
+      toast.error('El correo electrónico ya existe', {
+        position: "top-center",
+        autoClose: 12000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+
+    }
+    
     if (response.ok) {
-      console.log('Formulario enviado con éxito');
+
+      toast.success('Curriculum subido exitosamente', {
+        position: "top-center",
+        autoClose: 12000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+
+
     } else {
       const responseData = await response.json();
       console.error('Error al enviar el formulario:', responseData.error);
       setErrors({ general: 'Hubo un error en el envío del formulario.' });
     }
+
+
   } catch (error) {
     console.error('Error:', error.message);
     setErrors({ general: 'Hubo un error en el envío del formulario.' });
