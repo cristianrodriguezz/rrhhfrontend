@@ -4,7 +4,7 @@ const LastName = ({ formik }) => {
   return (
     <>
       <div className='w-full'>
-        <label htmlFor="last_name"></label>
+        <label htmlFor="last_name">Apellido</label>
         <input
           type="text"
           id="last_name"
@@ -13,7 +13,7 @@ const LastName = ({ formik }) => {
           onBlur={formik.handleBlur}
           value={formik.values.last_name}
           className='bg-pink-400 w-full placeholder:text-slate-900 placeholder:font-medium text-sm border-body rounded-lg'
-          placeholder='Apellido'
+
           />
           {
             formik.touched.last_name && formik.errors.last_name 

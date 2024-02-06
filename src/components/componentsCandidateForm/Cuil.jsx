@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 const Cuil = ({ formik }) => {
   return (
     <>
-      <div >
-        <label htmlFor="cuil"></label>
+      <div className='flex flex-col w-full'>
+        <label htmlFor="cuil">CUIL <span className='text-xs'>(sin guiones ni espacios)</span></label>
         <input
           type="number"
           id="cuil"
@@ -12,7 +12,7 @@ const Cuil = ({ formik }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.cuil}
-          placeholder='CUIL solo números'
+
           className='bg-pink-400 w-full placeholder:text-slate-900 placeholder:font-medium text-sm border-body rounded-lg'
           />
         {

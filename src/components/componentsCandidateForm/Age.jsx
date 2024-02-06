@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 const Age = ({ formik }) => {
   return (
     <>
-      <div >
-        <label htmlFor="age"></label>
+      <div className='flex flex-col'>
+        <label htmlFor="age">Edad</label>
         <input
           type="number"
           id="age"
@@ -15,7 +15,6 @@ const Age = ({ formik }) => {
           onBlur={formik.handleBlur}
           value={formik.values.age}
           className='bg-pink-400 w-13 placeholder:text-slate-900 placeholder:font-medium  text-sm border-body rounded-lg'
-          placeholder='Edad'
           />
           {
             formik.touched.age && formik.errors.age 

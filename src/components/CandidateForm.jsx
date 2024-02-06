@@ -36,7 +36,7 @@ const CandidateForm = ({ user_id }) => {
 
   return (
     <form onSubmit={formik.handleSubmit} className='max-w-md m-1 text-slate-900'>
-      <h1 className='text-center font-bold text-3xl my-3'>Recursos Humanos</h1>
+      <h1 className='text-center font-bold text-3xl my-3'>Luciana HR selection</h1>
       <div className='flex gap-2 '>
         <Name formik={formik}/>
         <LastName formik={formik}/>
@@ -44,6 +44,8 @@ const CandidateForm = ({ user_id }) => {
       <div className='flex gap-2 mb-2'>
         <Age formik={formik}/>
         <Cuil formik={formik}/>
+      </div>
+      <div className='mb-2'>
         <PhoneNumber formik={formik}/>
       </div>
       <div className='flex flex-col gap-2 mb-2'>

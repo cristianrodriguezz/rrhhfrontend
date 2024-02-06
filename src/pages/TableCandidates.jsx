@@ -35,7 +35,7 @@ const TableCandidates = () => {
   if (error) return <p>Error: {error}</p>
 
   return (
-    <div className="relative overflow-x-auto m-28">
+    <div className="relative overflow-x-auto p-5 min-h-screen bg-slate-900">
       <div className="flex gap-6 text-gray-200">
         <Search onInputChange={handleSearchNameInputChange} loading={loadingDebounce} type='text' placeholder='Buscar por nombre y apellido...'/>
         <Filters setCurrentPage={setCurrentPage}/>
