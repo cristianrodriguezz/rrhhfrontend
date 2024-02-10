@@ -1,5 +1,4 @@
 import { useFormik } from 'formik';
-import DragAndDropCv from './DragAndDropCv';
 import { candidateSchema } from '../validations/candidate';
 import PropTypes from 'prop-types';
 import SelectLocation from './componentsCandidateForm/SelectLocation';
@@ -16,6 +15,7 @@ import HasOwnExperience from './componentsCandidateForm/HasOwnExperience';
 import { handleSubmit, initialValues } from '../utils/formCandidateConfig';
 import Cuil from './componentsCandidateForm/Cuil';
 import Email from './componentsCandidateForm/Email';
+import DragAndDropCv from './componentsCandidateForm/DragAndDropCv';
 
 
 const CandidateForm = ({ user_id }) => {
@@ -26,13 +26,7 @@ const CandidateForm = ({ user_id }) => {
     onSubmit: (values, formikBag) => handleSubmit(values, user_id, formikBag),
   })
 
-  // Esto lo hacemos para validar que han puesto un curriculum
-  const handleFileUpload = (uploadedFile) => {
-    console.log(uploadedFile.type.endsWith('jpeg'));
-    if (uploadedFile && (uploadedFile.type === "application/pdf" || uploadedFile.type.endsWith('jpeg') || uploadedFile.type.endsWith('docx'))) {
-      formik.setFieldValue("cv", uploadedFile.name);
-    } 
-  }
+
 
   return (
     <form onSubmit={formik.handleSubmit} className='max-w-md m-1 text-slate-900'>
@@ -59,7 +53,7 @@ const CandidateForm = ({ user_id }) => {
         <SelectLocation formik={formik}/>
         <Email formik={formik}/>
       </div>
-      <DragAndDropCv onFileUpload={handleFileUpload} formik={formik}/>
+      <DragAndDropCv formik={formik}/>
       <ButtonSubmitCandidate formik={formik}/>
       
     </form>

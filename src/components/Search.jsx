@@ -20,7 +20,7 @@ const Search = ({ onInputChange, loading, placeholder, type }) => {
       resetCheckbox()
       resetCheckboxes()
       let checkboxes = document.getElementsByClassName('candidatescheckbox')
-      console.log(checkboxes)
+
       Array.from(checkboxes).forEach(checkbox => {
         checkbox.checked = false
       })

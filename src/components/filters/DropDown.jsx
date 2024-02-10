@@ -5,9 +5,9 @@ const DropDown = () => {
 
   const handleRadioChange = (event) => {
     setSelectedRadio(event.target.value);
-    console.log(event.target.value)
+
   };
-  console.log(selectedRadio);
+
 
   return (
     <div className="z-10 absolute w-48 divide-y rounded-lg shadow border border-gray-600 bg-gray-700 divide-gray-600">

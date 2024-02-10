@@ -34,7 +34,7 @@ const SelectLocation = ({ formik }) => {
       {
         formik.touched.location_id && formik.errors.location_id 
         ? 
-        <div className='text-error'>{formik.errors.location_id}</div>
+        <div className='text-error'>*{formik.errors.location_id}</div>
         : 
         null
       }

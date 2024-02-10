@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useStoreFilterBackend } from './useStore';
 
+
 const URL = import.meta.env.VITE_BACKEND_URL
 
 export const useFetchCandidates = ({ user_id, limit, currentPage, q }) => {
@@ -31,7 +32,7 @@ export const useFetchCandidates = ({ user_id, limit, currentPage, q }) => {
       setTotalPages(parseInt(data.totalPages))
       setCandidates(data.data)
     } catch (error) {
-      console.log('Error fetching photos:', error)
+
       setError('Error fetching photos:', error)
       setLoading(true)
     }finally{
@@ -181,3 +182,4 @@ export const useFecthLocations = () => {
   return { locations, loading, error}
   
 }
+
