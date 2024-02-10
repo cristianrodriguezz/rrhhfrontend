@@ -18,7 +18,7 @@ const SelectLocation = ({ formik }) => {
         }}
         onBlur={formik.handleBlur}
         value={formik.values.location_id}
-        className='bg-pink-400 w-full border-none rounded-lg focus:shadow-none focus:ring-transparent'
+        className='bg-white w-full border-none rounded-lg focus:shadow-none focus:ring-transparent'
       >
         <option hidden defaultValue={undefined}>
           Seleccionar

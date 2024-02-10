@@ -10,7 +10,7 @@ const Name = ({ formik }) => {
           id="first_name"
           name="first_name"
           onChange={formik.handleChange}
-          className='bg-pink-400 w-full placeholder:text-slate-900 placeholder:font-medium  text-sm border-body rounded-lg'
+          className='bg-white w-full placeholder:text-slate-900 placeholder:font-medium  text-sm border-body rounded-lg'
           onBlur={formik.handleBlur}
           value={formik.values.first_name}
 

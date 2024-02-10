@@ -16,7 +16,7 @@ const SelectCurrentPosition = ({ formik } ) => {
         onChange={(e) => {
         formik.setFieldValue('current_position_id', parseInt(e.target.value, 10));
         }}
-        className='bg-pink-400 w-full border-none rounded-lg focus:shadow-none focus:ring-transparent'
+        className='bg-white w-full border-none rounded-lg focus:shadow-none focus:ring-transparent'
         onBlur={formik.handleBlur}
         value={formik.values.current_position_id}
       >

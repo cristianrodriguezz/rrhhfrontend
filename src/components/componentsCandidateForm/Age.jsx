@@ -14,7 +14,7 @@ const Age = ({ formik }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.age}
-          className='bg-pink-400 w-13 placeholder:text-slate-900 placeholder:font-medium  text-sm border-body rounded-lg'
+          className='bg-white w-13 placeholder:text-slate-900 placeholder:font-medium  text-sm border-body rounded-lg'
           />
           {
             formik.touched.age && formik.errors.age 
