@@ -71,7 +71,10 @@ export const useStoreCuil = create((set) => ({
   cuil: null,
   setCuil: (cuil) => set({ cuil: cuil }),
 }));
-
+export const useStoreLocation = create((set) => ({
+  location: null,
+  setLocation: (location) => set({ location: location }),
+}));
 
 
 // 'age': '',
