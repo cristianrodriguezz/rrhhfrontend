@@ -6,13 +6,14 @@ const PhoneNumber = ({ formik }) => {
       <div>
         <label htmlFor="phone_number">Número de teléfono <span className='text-xs'>(con el código de área sin el 15)</span></label>
         <input
-          type="number"
+          type="tel"
           id="phone_number"
           name="phone_number"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.phone_number}
-          className='bg-white w-full placeholder:text-slate-900 placeholder:font-medium text-sm border-body rounded-lg'
+          placeholder='Ejemplo: 2613054872'
+          className='bg-white w-full placeholder:text-slate-400  text-sm border-body rounded-lg'
           />
         {
           formik.touched.phone_number && formik.errors.phone_number 

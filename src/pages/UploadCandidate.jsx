@@ -4,9 +4,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const UploadCandidate = () => {
+
   return (
     <div className="flex justify-center items-center">
-      <CandidateForm user_id={1}/>
+      <CandidateForm user_id={2}/>
       <ToastContainer
         position="top-center"
         autoClose={12000}

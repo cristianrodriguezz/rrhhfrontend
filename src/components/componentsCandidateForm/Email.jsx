@@ -10,10 +10,10 @@ const Email = ({ formik }) => {
           id="email"
           name="email"
           onChange={formik.handleChange}
-          className='bg-white w-full placeholder:text-slate-900 placeholder:font-medium  text-sm border-body rounded-lg'
+          className='bg-white w-full placeholder:text-slate-400  text-sm border-body rounded-lg'
           onBlur={formik.handleBlur}
           value={formik.values.email}
-          placeholder='email@mail.com'
+          placeholder='ejemplo@mail.com'
           />
           {
             formik.touched.email && formik.errors.email 

@@ -5,12 +5,12 @@ const CuilFilter = () => {
   const {setCuil} = useStoreCuil()
   return (
     <div>
-      <label htmlFor="cuil"></label>
+      <label htmlFor="c.cuil"></label>
       <input
         type="text"
         id="c.cuil"
-        name="cuil"
-        className="filters bg-slate-600 w-full placeholder-slate-300 text-sm border-body rounded-lg "
+        name="c.cuil"
+        className="filters bg-slate-600 w-full placeholder-slate-300 text-sm rounded-lg "
         placeholder="Cuil..."
         onChange={(e) => setCuil(e.target.value)}
       />

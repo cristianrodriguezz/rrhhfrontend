@@ -2,17 +2,20 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import TableCandidates from './pages/TableCandidates'
 import UploadCandidate from './pages/UploadCandidate'
-import Filters from './components/Filters'
+import Login from './pages/Login'
+import PageNotFound from './pages/PageNotFound'
+import UploadCandidateOk from './pages/UploadCandidateOk'
 
 function App() {
 
   return (
     <>
       <Routes>
-        <Route path='/' element={<TableCandidates/>}/>
-        <Route path='/upload-candidate' element={<UploadCandidate/>}/>
-        <Route path='/asd' element={<Filters/>}/>
-
+        <Route path='/tabla' element={<TableCandidates/>}/>
+        <Route path='/reclutar' element={<UploadCandidate/>}/>
+        <Route path='/' element={<Login/>}/>
+        <Route path="*" element={<PageNotFound/>} />
+        <Route path="/ok" element={<UploadCandidateOk/>} />
       </Routes>
     </>
   )

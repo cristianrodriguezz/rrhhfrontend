@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useStoreFilterBackend } from './useStore';
+import { useNavigate } from 'react-router-dom';
+import getTokenLocalStorage from '../utils/getTokenLocalStorage';
 
 
 const URL = import.meta.env.VITE_BACKEND_URL
 
 export const useFetchCandidates = ({ user_id, limit, currentPage, q }) => {
+
+  const token = getTokenLocalStorage()
 
   const filterWhere = [];
 
@@ -13,7 +17,8 @@ export const useFetchCandidates = ({ user_id, limit, currentPage, q }) => {
   for (const key in myFilter) {
     filterWhere.push(`${key}=${myFilter[key]}`);
   }
-  
+
+
   const filterQueryString = filterWhere.join('&');
   const URLCandidates = `${URL}api/candidates/get-candidates?user_id=${user_id}&limit=${limit}&offset=${currentPage * limit}&q=${q}&${filterQueryString}`;
 
@@ -26,8 +31,14 @@ export const useFetchCandidates = ({ user_id, limit, currentPage, q }) => {
   const getCandidates = async () => {
 
     try {
-      const response = await fetch(URLCandidates);
+      const response = await fetch(URLCandidates, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       const data = await response.json();
+
       setLoading(false)
       setTotalPages(parseInt(data.totalPages))
       setCandidates(data.data)
@@ -181,5 +192,59 @@ export const useFecthLocations = () => {
 
   return { locations, loading, error}
   
+}
+
+export const useFetchLogin = () => {
+  
+  const URL = import.meta.env.VITE_BACKEND_URL
+  const url = `${URL}api/auth/login`
+
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault()
+
+    const formData = new FormData(e.target)
+
+    setLoading(true)
+
+    try {
+
+      const response = await fetch(url,{
+        method: 'POST',
+        body: formData
+      })
+
+      const data = await response.json()
+
+      if(response.ok){
+        window.localStorage.setItem('user', JSON.stringify(data.data));
+      }else{
+        throw new Error(data.error)
+      }
+      if(response.ok){
+        navigate('/tabla')
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error.message);
+      if (error.message === 'Invalid email. Please register') {
+        setError('Email inválido');
+      } else if (error.message === 'Invalid Password') {
+        setError('Contraseña inválida')
+      } else {
+        setError('Hubo un error al procesar la solicitud. Intente más tarde.');
+      }
+    }
+    finally{
+      setLoading(false)
+    }
+
+  }
+
+  return {loading, error, handleSubmit}
+
 }
 

@@ -16,11 +16,11 @@ export const initialValues = {
   email:'',
 };
 
-export const handleSubmit = async (values, user_id, { setSubmitting, setErrors }) => {
-  console.log(values);
+export const handleSubmit = async (values, user_id, { setSubmitting, setErrors }, navigate) => {
 
   const formData = new FormData()
   formData.append('cv', values.cv[0])
+
 
   const URL = import.meta.env.VITE_BACKEND_URL
 
@@ -76,16 +76,7 @@ export const handleSubmit = async (values, user_id, { setSubmitting, setErrors }
     
     if (response.ok) {
 
-      toast.success('Curriculum subido exitosamente', {
-        position: "top-center",
-        autoClose: 12000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      })
+      navigate('/')
 
 
     } else {

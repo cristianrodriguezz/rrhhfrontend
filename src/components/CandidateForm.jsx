@@ -16,17 +16,18 @@ import { handleSubmit, initialValues } from '../utils/formCandidateConfig';
 import Cuil from './componentsCandidateForm/Cuil';
 import Email from './componentsCandidateForm/Email';
 import DragAndDropCv from './componentsCandidateForm/DragAndDropCv';
+import { useNavigate } from 'react-router-dom';
 
 
 const CandidateForm = ({ user_id }) => {
 
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues,
     validationSchema: candidateSchema,
-    onSubmit: (values, formikBag) => handleSubmit(values, user_id, formikBag),
+    onSubmit: (values, formikBag) => handleSubmit(values, user_id, formikBag, navigate ),
   })
-
-
 
   return (
     <form onSubmit={formik.handleSubmit} className='max-w-md m-1 text-slate-900'>
