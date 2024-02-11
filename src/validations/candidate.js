@@ -9,7 +9,7 @@ const otherPhoneRegex = /^(11|260|261|2622|2624|2625|2626|263|264|266|2804|2901|
 export const candidateSchema = yup.object({
   first_name: yup.string().min(1).max(50, 'Debe tener 50 caracteres como máximo').required('Debes completar el nombre'),
   last_name: yup.string().min(1).max(50, 'Debe tener 50 caracteres como máximo').required('Debes completar el apellido'),
-  age: yup.number().max(100).integer().required('Debes completar tu edad'),
+  age: yup.date().max(new Date(), 'La fecha de nacimiento no puede ser en el futuro').required('Debes completar tu fecha de nacimiento'),
   cuil: yup.string().matches(/^\d{11}$/, 'El CUIL debe contener exactamente 11 dígitos').required('Debes completar tu CUIL'),
   phone_number: yup.string()
   .max(25, 'Debe tener 25 caracteres como máximo')
@@ -22,7 +22,8 @@ export const candidateSchema = yup.object({
   availability_id: yup.number().integer().required('Debes completar tu disponibilidad'),
   location_id: yup.number().integer().required('Debes completar tu localidad'),
   cv: yup.mixed().required('El curriculum es requerido'),
-  email: yup.string().email('Tiene que ser un email').max(40, 'Debe tener 40 caracteres como máximo').required('Debes completar tu email')
+  email: yup.string().email('Tiene que ser un email').max(40, 'Debe tener 40 caracteres como máximo').required('Debes completar tu email'),
+  language_id: yup.number().integer().nullable(),
 })
 
 

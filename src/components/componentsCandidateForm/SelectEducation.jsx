@@ -23,7 +23,7 @@ const SelectEducation = ({ formik } ) => {
           Seleccionar
         </option>
         {educations?.map(({ education_id, education }) => (
-          <option key={education_id} className='text-white' value={parseInt(education_id)}>
+          <option key={education_id} className='text-black' value={parseInt(education_id)}>
             {education}
           </option>
         ))}

@@ -193,6 +193,39 @@ export const useFecthLocations = () => {
   return { locations, loading, error}
   
 }
+export const useFecthEnglishLevel = () => {
+    
+  const URLEducaction = `${URL}api/lenguage`
+
+
+  const [lenguage, setLenguage] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const getLocations = async () => {
+
+    try {
+      const response = await fetch(URLEducaction);
+      const {data} = await response.json();
+      setLoading(false)
+
+      setLenguage(data)
+    } catch (error) {
+      console.error('Error fetching education:', error)
+      setError('Error fetching education:', error)
+      setLoading(true)
+    }finally{
+      setLoading(true)
+    }
+  }
+
+  useEffect( () => {
+    getLocations()
+  },[])
+
+  return { lenguage, loading, error}
+  
+}
 
 export const useFetchLogin = () => {
   

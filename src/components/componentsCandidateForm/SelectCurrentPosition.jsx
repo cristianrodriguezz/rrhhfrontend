@@ -20,11 +20,11 @@ const SelectCurrentPosition = ({ formik } ) => {
         onBlur={formik.handleBlur}
         value={formik.values.current_position_id}
       >
-        <option  hidden defaultValue={undefined} className='text-white'>
+        <option  hidden defaultValue={undefined} className='text-black'>
           Seleccionar
         </option>
         {positions?.map(({ current_position_id, current_position }) => (
-          <option key={current_position_id} className='text-white' value={parseInt(current_position_id)}>
+          <option key={current_position_id} className='text-black' value={parseInt(current_position_id)}>
             {current_position}
           </option>
         ))}

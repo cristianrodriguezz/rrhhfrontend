@@ -23,7 +23,7 @@ const SelectAvailability = ({ formik } ) => {
           Seleccionar
         </option>
         {availabilities?.map(({ availability_id, availability_schedule }) => (
-          <option key={availability_id} className='text-white' value={parseInt(availability_id)}>
+          <option key={availability_id} className='text-black' value={parseInt(availability_id)}>
             {availability_schedule}
           </option>
         ))}

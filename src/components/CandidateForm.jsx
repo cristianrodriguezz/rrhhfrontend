@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
-import { candidateSchema } from '../validations/candidate';
 import PropTypes from 'prop-types';
+import { candidateSchema } from '../validations/candidate';
 import SelectLocation from './componentsCandidateForm/SelectLocation';
 import SelectAvailability from './componentsCandidateForm/SelectAvailability';
 import SelectCurrentPosition from './componentsCandidateForm/SelectCurrentPosition';
@@ -17,6 +17,7 @@ import Cuil from './componentsCandidateForm/Cuil';
 import Email from './componentsCandidateForm/Email';
 import DragAndDropCv from './componentsCandidateForm/DragAndDropCv';
 import { useNavigate } from 'react-router-dom';
+import HasEnglish from './componentsCandidateForm/HasEnglish';
 
 
 const CandidateForm = ({ user_id }) => {
@@ -28,6 +29,7 @@ const CandidateForm = ({ user_id }) => {
     validationSchema: candidateSchema,
     onSubmit: (values, formikBag) => handleSubmit(values, user_id, formikBag, navigate ),
   })
+
 
   return (
     <form onSubmit={formik.handleSubmit} className='max-w-md m-1 text-slate-900'>
@@ -49,6 +51,10 @@ const CandidateForm = ({ user_id }) => {
       </div>
       <div className='flex flex-col gap-2'>
         <SelectCurrentPosition formik={formik}/>
+        {
+          (formik.values.current_position_id === 17 || formik.values.current_position_id === 18) && 
+          <HasEnglish formik={formik}/>
+        }
         <SelectEducation formik={formik}/>
         <SelectAvailability formik={formik}/>
         <SelectLocation formik={formik}/>

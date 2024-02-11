@@ -24,7 +24,7 @@ const SelectLocation = ({ formik }) => {
           Seleccionar
         </option>
         {locations?.map(({ location_id, name }) => (
-          <option key={location_id} className='text-white' value={parseInt(location_id)}>
+          <option key={location_id} className='text-black' value={parseInt(location_id)}>
             {name}
           </option>
         ))}

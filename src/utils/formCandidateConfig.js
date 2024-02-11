@@ -8,6 +8,7 @@ export const initialValues = {
   phone_number: '',
   has_own_transport: false,
   has_work_experience: false,
+  lenguage_id: '',
   current_position_id: '',
   education_id: '',
   availability_id: '',
@@ -21,6 +22,19 @@ export const handleSubmit = async (values, user_id, { setSubmitting, setErrors }
   const formData = new FormData()
   formData.append('cv', values.cv[0])
 
+  const age = new Date(values.age).toISOString()
+  const phone_number = parseInt(values.phone_number)
+
+  const valuesToSend = {
+    ...values,
+    age,
+    phone_number
+  }
+  if (valuesToSend.lenguage_id === ''){
+    delete valuesToSend.lenguage_id
+  }
+
+  console.log(valuesToSend);
 
   const URL = import.meta.env.VITE_BACKEND_URL
 
@@ -30,10 +44,11 @@ export const handleSubmit = async (values, user_id, { setSubmitting, setErrors }
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(values),
+      body: JSON.stringify(valuesToSend),
     })
 
     const data = await response.json()
+    console.log(data);
 
     const {candidate_id} = data
 
@@ -76,7 +91,7 @@ export const handleSubmit = async (values, user_id, { setSubmitting, setErrors }
     
     if (response.ok) {
 
-      navigate('/')
+      navigate('/ok')
 
 
     } else {
