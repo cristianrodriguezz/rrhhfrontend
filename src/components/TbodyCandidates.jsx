@@ -1,4 +1,5 @@
 import  PropTypes  from 'prop-types'
+import Actions from './Actions';
 
 const TbodyCandidates = ({ candidates, className }) => {
   
@@ -28,7 +29,7 @@ const TbodyCandidates = ({ candidates, className }) => {
           <td className={className}>{candidate.availability_schedule}</td>
           <td className={className}>{candidate.location}</td>
           <td className={className}>{candidate.status}</td>
-          <td className={className}>ACCION</td>
+          <td className={className}><Actions/></td>
         </tr>
       ))
       :
