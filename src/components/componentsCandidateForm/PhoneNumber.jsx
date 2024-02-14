@@ -13,7 +13,7 @@ const PhoneNumber = ({ formik }) => {
           onBlur={formik.handleBlur}
           value={formik.values.phone_number}
           placeholder='Ejemplo: 2613054872'
-          className='bg-white w-full placeholder:text-slate-400  text-sm border-body rounded-lg'
+          className={`bg-white w-full placeholder:text-slate-400  text-sm border-body rounded-lg ${(formik.touched.phone_number && formik.errors.phone_number )  && 'border-2 border-error'}`}
           />
         {
           formik.touched.phone_number && formik.errors.phone_number 

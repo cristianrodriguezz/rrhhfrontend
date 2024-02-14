@@ -10,7 +10,7 @@ const Name = ({ formik }) => {
           id="first_name"
           name="first_name"
           onChange={formik.handleChange}
-          className='bg-white w-full placeholder:text-slate-900 placeholder:font-medium  text-sm border-body rounded-lg'
+          className={`bg-white w-full placeholder:text-slate-900 placeholder:font-medium  text-sm border-body rounded-lg ${(formik.touched.first_name && formik.errors.first_name )  && 'border-2 border-error'}`}
           onBlur={formik.handleBlur}
           value={formik.values.first_name}
 

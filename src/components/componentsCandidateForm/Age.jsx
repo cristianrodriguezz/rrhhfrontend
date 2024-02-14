@@ -12,14 +12,11 @@ const Age = ({ formik }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.age}
-          className='bg-white  text-sm border-body rounded-lg'
+          className={`bg-white  text-sm border-body rounded-lg ${(formik.touched.age && formik.errors.age )  && 'border-2 border-error'}`}
           />
           {
-            formik.touched.age && formik.errors.age 
-            ? 
-            <div className='text-error'>*{formik.errors.age}</div>
-            : 
-            null
+            (formik.touched.age && formik.errors.age ) && <div className='text-error'>*{formik.errors.age}</div>
+
           }
       </div>
     </>

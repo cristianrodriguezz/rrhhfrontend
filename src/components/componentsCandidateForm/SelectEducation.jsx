@@ -7,7 +7,7 @@ const SelectEducation = ({ formik } ) => {
 
   return (
     <>
-      <label htmlFor="education_id" className='text-slate-900 font-medium flex gap-1 items-center justify-center'>
+      <label htmlFor="education_id" className={`text-slate-900 font-medium flex gap-1 items-center justify-center  ${(formik.touched.education_id && formik.errors.education_id )  && 'border-2 border-error rounded-xl'}`}>
       Educación
       <select
         id="education_id"
@@ -17,7 +17,7 @@ const SelectEducation = ({ formik } ) => {
         }}
         onBlur={formik.handleBlur}
         value={formik.values.education_id}
-        className='bg-white w-full border-none rounded-lg focus:shadow-none focus:ring-transparent'
+        className={`bg-white w-full border-none rounded-lg focus:shadow-none focus:ring-transparent`}
       >
         <option  hidden defaultValue={undefined}>
           Seleccionar

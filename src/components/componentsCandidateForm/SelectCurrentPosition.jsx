@@ -8,7 +8,7 @@ const SelectCurrentPosition = ({ formik } ) => {
 
   return (
     <>
-      <label htmlFor="current_position_id" className='text-slate-900 font-medium flex gap-1 items-center justify-center'>
+      <label htmlFor="current_position_id" className={`text-slate-900 font-medium flex gap-1 items-center justify-center  ${(formik.touched.current_position_id && formik.errors.current_position_id )  && 'border-2 border-error rounded-xl'}`}>
        Posición
       <select
         id="current_position_id"
@@ -16,7 +16,7 @@ const SelectCurrentPosition = ({ formik } ) => {
         onChange={(e) => {
         formik.setFieldValue('current_position_id', parseInt(e.target.value, 10));
         }}
-        className='bg-white w-full border-none rounded-lg focus:shadow-none focus:ring-transparent'
+        className={`bg-white w-full border-none rounded-lg focus:shadow-none focus:ring-transparent `}
         onBlur={formik.handleBlur}
         value={formik.values.current_position_id}
       >

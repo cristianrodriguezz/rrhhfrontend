@@ -13,7 +13,7 @@ const Cuil = ({ formik }) => {
           onBlur={formik.handleBlur}
           value={formik.values.cuil}
 
-          className='bg-white w-full placeholder:text-slate-900 placeholder:font-medium text-sm border-body rounded-lg'
+          className={`bg-white w-full placeholder:text-slate-900 placeholder:font-medium text-sm border-body rounded-lg ${(formik.touched.cuil && formik.errors.cuil )  && 'border-2 border-error'}`}
           />
         {
           formik.touched.cuil && formik.errors.cuil 

@@ -8,7 +8,7 @@ const SelectLocation = ({ formik }) => {
   return (
     <>
 
-    <label htmlFor="location_id" className='text-slate-900 font-medium  flex gap-1 items-center justify-center'>
+    <label htmlFor="location_id" className={`text-slate-900 font-medium flex gap-1 items-center justify-center  ${(formik.touched.location_id && formik.errors.location_id )  && 'border-2 border-error rounded-xl'}`}>
       Localidad
       <select
         id="location_id"
@@ -18,7 +18,7 @@ const SelectLocation = ({ formik }) => {
         }}
         onBlur={formik.handleBlur}
         value={formik.values.location_id}
-        className='bg-white w-full border-none rounded-lg focus:shadow-none focus:ring-transparent'
+        className={`bg-white w-full border-none rounded-lg focus:shadow-none focus:ring-transparent `}
       >
         <option hidden defaultValue={undefined}>
           Seleccionar
