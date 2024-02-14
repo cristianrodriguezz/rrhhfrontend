@@ -1,5 +1,6 @@
 import  PropTypes  from 'prop-types'
 import Actions from './Actions';
+import { formateDate } from '../utils/formateDate';
 
 const TbodyCandidates = ({ candidates, className }) => {
   
@@ -20,7 +21,7 @@ const TbodyCandidates = ({ candidates, className }) => {
           </td>
           <td className={className}>{candidate.first_name}</td>
           <td className={className}>{candidate.last_name}</td>
-          <td className={className}>{candidate.age}</td>
+          <td className={className}>{formateDate(candidate.age)}</td>
           <td className={className}>{candidate.phone_number}</td>
           <td className={className}>{candidate.cuil}</td>
           <td className={className}>{candidate.has_own_transport ? 'Sí' : 'No'}</td>
