@@ -54,7 +54,6 @@ const TableCandidates = () => {
         onPageChanged={handlePageChange}
         className="inline-flex -space-x-px text-sm"
       />
-
     </div>
   )
 }

@@ -4,7 +4,7 @@ import ArrowIcon from './icons/ArrowIcon'
 import DropDown from './filters/DropDown';
 import { useState } from 'react';
 
-const TheadCandidates = ({ tableHeader, className }) => {
+const TheadCandidates = ({ className }) => {
   const { checkboxIds, toggleCheckbox, resetCheckboxes } = useStoreCheckbox()
   const { checkbox, checkboxAdd, resetCheckbox } = useStoreResetCheckBoxAll()
 
@@ -85,7 +85,7 @@ const TheadCandidates = ({ tableHeader, className }) => {
         </th>
         <th onClick={() => filter('Mov.')}  scope="col" className={`${className} relative`}>
           <div className='flex'>
-            Mov. <ArrowIcon/>
+            Mov. 
           </div>
           {mov ? <div className='top-12 left-0 absolute'><DropDown/></div>: null}
         </th>
@@ -114,9 +114,9 @@ const TheadCandidates = ({ tableHeader, className }) => {
             Estado
           </div>
         </th>
-        <th onClick={() => filter()}  scope="col" className={`${className} relative`}>
-          <div className='flex'>
-            Acciones
+        <th onClick={() => filter()}  scope="col" className={`${className}  w-[20px] relative`}>
+          <div className={''}>
+
           </div>
         </th>
 

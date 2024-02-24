@@ -280,4 +280,113 @@ export const useFetchLogin = () => {
   return {loading, error, handleSubmit}
 
 }
+export const useFetchUpdateCandidate =  (candidatess, setCandidatess) => {
 
+  const URL = import.meta.env.VITE_BACKEND_URL
+
+  const body = {
+    first_name: '',
+    last_name: '',
+    age: '',
+    phone_number: '',
+    has_own_transport: '',
+    has_work_experience: '',
+    availability_id: '',
+    location_id: '',
+    current_position_id: '',
+    cuil: ''
+  }
+
+  const handleChange = (e) => {
+
+    const name = e.target.name
+
+    if(e.target.type === 'checkbox'){
+      body[name] = e.target.checked
+    }
+    if(e.target.type === 'select-one'){
+      body[name] = parseInt(e.target.value)
+    }
+    if(e.target.type === 'text'){
+      body[name] = e.target.value
+    }
+    if(e.target.type === 'date'){
+      console.log("CAMBIAR DATO A TIPO DATE");
+      body[name] = 10
+    }
+
+
+  }
+
+  const handleSubmit = async (user_id, candidate_id) => {
+
+    const url = `${URL}api/candidates/update?user_id=${user_id}&candidate_id=${candidate_id}`
+
+    try {
+
+
+    console.log(candidate_id);
+
+    const response = await fetch(url, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+
+    console.log(body)
+
+    const data = await response.json()
+    console.log(data);
+
+    candidatess.map(candidate => {
+      const { 
+        first_name,
+        last_name,
+        age,
+        phone_number,
+        has_own_transport,
+        has_work_experience,
+        availability_id,
+        location_id,
+        current_position_id,
+        cuil
+      } = body
+      
+      if (candidate.candidate_id === candidate_id) {
+        // Modificar el campo deseado del candidato
+        const updatedCandidate = {
+          ...candidate,
+          first_name: !first_name ? candidate.first_name : first_name,
+          last_name: !last_name ? candidate.last_name : last_name,
+          age: !age ? candidate.age : age,
+          phone_number: !phone_number ? candidate.phone_number : phone_number,
+          has_own_transport: !has_own_transport ? candidate.has_own_transport : has_own_transport,
+          has_work_experience: !has_work_experience ? candidate.has_work_experience : has_work_experience,
+          availability_id: !availability_id ? candidate.availability_id : availability_id,
+          location_id: !location_id ? candidate.location_id : location_id,
+          current_position_id: !current_position_id ? candidate.current_position_id : current_position_id,
+          cuil: !cuil ? candidate.cuil : cuil
+        }
+    
+        // Crear una nueva matriz de candidatos con el candidato actualizado
+        const updatedCandidates = candidatess.map(c => 
+          c.candidate_id === candidate_id ? updatedCandidate : c
+        )
+  
+        // Establecer la nueva matriz de candidatos actualizados como estado
+        setCandidatess(updatedCandidates);
+      }
+    })
+
+
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  
+  return { handleSubmit, handleChange, body, candidatess }
+}

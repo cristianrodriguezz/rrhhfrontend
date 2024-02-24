@@ -74,17 +74,13 @@ export const useStoreCuil = create((set) => ({
 export const useStoreLocation = create((set) => ({
   location: null,
   setLocation: (location) => set({ location: location }),
+}))
+
+export const useStoreDeleteCandidate = create((set)=> ({
+  isDeleteId: null,
+  setIsDeleteId: (isDeleteId) => set({isDeleteId: isDeleteId})
+}))
+export const useCandidateStore = create((set) => ({
+  selectedCandidateId: null,
+  setSelectedCandidateId: (id) => set({ selectedCandidateId: id }),
 }));
-
-
-// 'age': '',
-// 'phone_number': '',
-// 'has_own_transport': '',
-// 'has_work_experience': '',
-// 'education': '',
-// 'availability_schedule': '',
-// 'cuil': '',
-// 'location': '',
-// 'status': '',
-// 'current_position': ''
-
