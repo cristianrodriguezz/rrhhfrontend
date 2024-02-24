@@ -10,15 +10,15 @@ import { useCandidateStore, useStoreDeleteCandidate } from '../hooks/useStore';
 import getUserFromLocalStorage from '../utils/getUserLocalStorage';
 
 
-const TbodyCandidates = ({ candidates }) => {
+const TbodyCandidates = ({ candidates, setCandidates }) => {
 
   const { positions } = useFetchPositions()
   const { availabilities } = useFecthAvailabilities()
   const { locations } = useFecthLocations()
-  const [candidatess, setCandidatess] = useState(candidates)
+
   const { isDeleteId, setIsDeleteId } = useStoreDeleteCandidate()
   const { selectedCandidateId, setSelectedCandidateId } = useCandidateStore()
-  const { handleSubmit, handleChange, candidatesUpdate } = useFetchUpdateCandidate(candidatess, setCandidatess)
+  const { handleSubmit, handleChange, candidatesUpdate } = useFetchUpdateCandidate(candidates, setCandidates)
 
   const { id } = getUserFromLocalStorage()
 
@@ -26,31 +26,28 @@ const TbodyCandidates = ({ candidates }) => {
     setSelectedCandidateId(candidateId)
   }
   useEffect(()=>{
+    
     if (isDeleteId) {
       document.startViewTransition(()=>{
         flushSync(()=>{
-          const nuevoArray = candidatess.filter(candidate => (candidate.candidate_id !== isDeleteId ));
+          const nuevoArray = candidates.filter(candidate => (candidate.candidate_id !== isDeleteId ));
           setIsDeleteId(null)
-          setCandidatess(nuevoArray)
+          setCandidates(nuevoArray)
         })
       })
-      console.log("BORRAR")
     }
 
-    console.log("RENDER TABLA")
 
-
-
-  },[isDeleteId, candidatesUpdate])
+  },[isDeleteId, candidatesUpdate, candidates])
 
 
 
   return (
     <>
       {
-      candidatess 
+      candidates 
       ? 
-      candidatess?.map((candidate) => (
+      candidates?.map((candidate) => (
 
         <tr style={{viewTransitionName: `name-transition-${candidate.candidate_id}`, zIndex: '0', position: 'relative'}} key={candidate.candidate_id} id={`candidate-${candidate.candidate_id}`} className={`border-b hover:bg-gray-700 bg-gray-800 border-gray-700`}>
           <td className="w-4 p-4">

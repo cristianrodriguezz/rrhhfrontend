@@ -53,9 +53,9 @@ export const useFetchCandidates = ({ user_id, limit, currentPage, q }) => {
 
   useEffect( () => {
     getCandidates()
-  },[user_id, limit, currentPage, q, myFilter])
+  },[user_id, limit, currentPage, q, myFilter, ])
 
-  return { candidates, totalPages, loading, error}
+  return { candidates, totalPages, loading, error, setCandidates}
 
 }
 

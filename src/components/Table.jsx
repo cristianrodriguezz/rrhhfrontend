@@ -4,7 +4,9 @@ import TheadCandidates from "./TheadCandidates"
 import PropTypes from 'prop-types'
 
 
-const Table = ( { candidates } ) => {
+const Table = ( { candidates, setCandidates } ) => {
+
+
 
   return (
     <table className="w-full text-sm  text-left rtl:text-right text-gray-400 ">
@@ -13,7 +15,7 @@ const Table = ( { candidates } ) => {
         <TheadCandidates tableHeader={tableHeader} className='px-3 py-3'  />
       </thead>
       <tbody>
-        <TbodyCandidates candidates={candidates} />
+        <TbodyCandidates candidates={candidates} setCandidates={setCandidates}/>
       </tbody>
     </table>
   )

@@ -8,6 +8,7 @@ import Filters from "../components/Filters"
 import FiltersAddContainer from "../components/FiltersAddContainer"
 import getUserFromLocalStorage from "../utils/getUserLocalStorage"
 import Search from "../components/filters/Search"
+import { Card } from "flowbite-react"
 
 const TableCandidates = () => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -15,13 +16,12 @@ const TableCandidates = () => {
   const user = getUserFromLocalStorage()
 
   const { debouncedValue, loadingDebounce } = useDebounce(inputName, 500)
-  const { candidates, totalPages, loading, error } = useFetchCandidates({
+  const { candidates, totalPages, loading, error, setCandidates } = useFetchCandidates({
     user_id : user.id && user.id,
     limit: 40,
     currentPage,
     q: debouncedValue,
   })
-
 
   const handlePageChange = (paginationData) => {
     setCurrentPage(paginationData.currentPage)
@@ -30,9 +30,7 @@ const TableCandidates = () => {
   const handleSearchNameInputChange = (value) => {
     setInputName(value)
   }
-
-  const { filterCandidate } = useFilters()
-  const candidateFiltered = filterCandidate(candidates);
+  console.log(candidates);
 
 
   if (!loading) return <p>Cargando...</p>
@@ -45,7 +43,7 @@ const TableCandidates = () => {
         <Filters setCurrentPage={setCurrentPage}/>
       </div>
       <FiltersAddContainer/>
-      <Table candidates={candidateFiltered}/>
+      <Table candidates={candidates} setCandidates={setCandidates}/>
 
       <Pagination
         totalRecords={totalPages}
