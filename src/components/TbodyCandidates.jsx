@@ -119,7 +119,7 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
               <div onClick={() => handleCopyClipboard(candidate.phone_number)} className='cursor-pointer'>
                 <Copy/>
               </div>
-              <div onClick={() => handleClickWasap(candidate.phone_number)}>
+              <div onClick={() => handleClickWasap(candidate.phone_number)} className='cursor-pointer'>
                 <Wasap/>
               </div>
             </div>
