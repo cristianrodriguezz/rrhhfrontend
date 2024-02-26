@@ -7,6 +7,7 @@ import { flushSync } from 'react-dom';
 import { useEffect } from 'react';
 import { useCandidateStore, useStoreDeleteCandidate } from '../hooks/useStore';
 import getUserFromLocalStorage from '../utils/getUserLocalStorage';
+import Download from './icons/Download';
 
 
 const TbodyCandidates = ({ candidates, setCandidates }) => {

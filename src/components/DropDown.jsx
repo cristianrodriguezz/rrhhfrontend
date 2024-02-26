@@ -2,6 +2,9 @@ import  PropTypes  from 'prop-types'
 import Delete from './icons/Delete'
 import { deleteCandidate } from '../services/deleteCandidate'
 import { useStoreDeleteCandidate } from '../hooks/useStore'
+import Download from './icons/Download'
+import Edit from './icons/Edit'
+import { getCvById } from '../services/getCv'
 
 
 const DropDown = ({ show, candidate_id, user_id, onEditClick  }) => {
@@ -18,11 +21,16 @@ const DropDown = ({ show, candidate_id, user_id, onEditClick  }) => {
       setIsDeleteId(candidate_id)
     }
   }
+  const handleClickOpenCv = () => {
+    getCvById(candidate_id)
+
+  }
 
   return (
-    <ul className={`*:p-2 *:cursor-pointer *:rounded-md origin-bottom-right flex flex-col p-3 absolute right-20 -top-[90px] ${show ? 'animate-open' : 'animate-close'} z-10 bg-slate-900 p-3 rounded-md `}>
-      <li className='hover:bg-slate-700' onClick={handleClickEdit}>Editar</li>
-      <li className="hover:bg-slate-700" onClick={handleClickDelete} aria-label="Borrar"><Delete/></li>
+    <ul className={`*:p-1 *:cursor-pointer *:rounded-md p-2 origin-bottom-right flex flex-col  absolute right-[85%] -top-[100px] border border-slate-500 ${show ? 'animate-open' : 'animate-close'} z-10 bg-slate-900  rounded-md `}>
+      <li className='hover:bg-slate-700 flex gap-2 items-center' onClick={handleClickOpenCv}><Download/>CV</li>
+      <li className='hover:bg-slate-700 flex gap-2  items-center' onClick={handleClickEdit}><Edit/>Editar</li>
+      <li className="hover:bg-slate-700 flex gap-2  items-center" onClick={handleClickDelete} aria-label="Borrar"><Delete/>Eliminar</li>
     </ul>
   )
 }
