@@ -23,7 +23,6 @@ const DropDown = ({ show, candidate_id, user_id, onEditClick  }) => {
   }
   const handleClickOpenCv = () => {
     getCvById(candidate_id)
-
   }
 
   return (

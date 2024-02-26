@@ -5,10 +5,11 @@ export const getCvById = async (candidate_id) => {
 
   try {
     const response = await fetch(url)
-    const data = await response.json()
-    console.log(data)
+    const { data } = await response.json()
+    window.open(data.link)
 
-    return data
+
+    return data.link
   } catch (error) {
     console.log(error)
   }
