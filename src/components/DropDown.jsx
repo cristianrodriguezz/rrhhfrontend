@@ -6,8 +6,9 @@ import Download from './icons/Download'
 import Edit from './icons/Edit'
 import { getCvById } from '../services/getCv'
 
-
 const DropDown = ({ show, candidate_id, user_id, onEditClick  }) => {
+  
+
 
   const { setIsDeleteId } = useStoreDeleteCandidate()
 

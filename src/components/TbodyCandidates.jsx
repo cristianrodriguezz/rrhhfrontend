@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import { useCandidateStore, useStoreDeleteCandidate } from '../hooks/useStore';
 import getUserFromLocalStorage from '../utils/getUserLocalStorage';
 import Download from './icons/Download';
+import CheckOut from './icons/CheckOut';
+import CheckIn from './icons/CheckIn';
 
 
 const TbodyCandidates = ({ candidates, setCandidates }) => {
@@ -136,7 +138,7 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
               onChange={handleChange}
             />
               :
-            <p className={`candidate-p-${candidate.candidate_id}`}>{candidate.has_own_transport ? 'Sí' : 'No'}</p>
+              <div>{candidate.has_own_transport ? <CheckIn/>: <CheckOut/>}</div>
             }
           </td>
           <td className={'w-[3.8%] px-3'}>
@@ -150,7 +152,7 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
               onChange={handleChange}
             />
             :
-             <p className={`candidate-p-${candidate.candidate_id}`}>{candidate.has_work_experience ? 'Sí' : 'No'}</p>
+             <p className={`candidate-p-${candidate.candidate_id}`}>{candidate.has_work_experience ? <CheckIn/>: <CheckOut/>}</p>
             }
           </td>
           <td className={'w-[17%] px-3'}>

@@ -1,3 +1,4 @@
+
 export const getCvById = async (candidate_id) => {
 
   const URL = import.meta.env.VITE_BACKEND_URL
@@ -8,8 +9,8 @@ export const getCvById = async (candidate_id) => {
     const { data } = await response.json()
     window.open(data.link)
 
-
     return data.link
+
   } catch (error) {
     console.log(error)
   }

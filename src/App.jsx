@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import PageNotFound from './pages/PageNotFound'
 import UploadCandidateOk from './pages/UploadCandidateOk'
 
+
 function App() {
 
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="*" element={<PageNotFound/>} />
         <Route path="/ok" element={<UploadCandidateOk/>} />
       </Routes>
+
     </>
   )
 }
