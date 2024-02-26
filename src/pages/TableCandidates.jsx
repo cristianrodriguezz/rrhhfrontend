@@ -3,12 +3,10 @@ import Pagination from "../components/Pagination"
 import { useFetchCandidates } from "../hooks/useFetch"
 import { useDebounce } from "../hooks/useDebounce"
 import Table from "../components/Table"
-import { useFilters } from "../hooks/useFilter"
 import Filters from "../components/Filters"
 import FiltersAddContainer from "../components/FiltersAddContainer"
 import getUserFromLocalStorage from "../utils/getUserLocalStorage"
 import Search from "../components/filters/Search"
-import { Card } from "flowbite-react"
 
 const TableCandidates = () => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -30,8 +28,6 @@ const TableCandidates = () => {
   const handleSearchNameInputChange = (value) => {
     setInputName(value)
   }
-  console.log(candidates);
-
 
   if (!loading) return <p>Cargando...</p>
   if (error) return <p>Error: {error}</p>

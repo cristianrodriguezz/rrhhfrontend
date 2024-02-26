@@ -2,7 +2,6 @@ import  PropTypes  from 'prop-types'
 import Actions from './Actions';
 import { formateDate, formateDateInput } from '../utils/formateDate';
 import { useFecthAvailabilities, useFecthLocations, useFetchPositions, useFetchUpdateCandidate } from '../hooks/useFetch';
-import { useState } from 'react';
 import { getIdToAvailabilty, getIdToLocation, getIdToPosition } from '../utils/getIdSelect';
 import { flushSync } from 'react-dom';
 import { useEffect } from 'react';
@@ -15,11 +14,9 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
   const { positions } = useFetchPositions()
   const { availabilities } = useFecthAvailabilities()
   const { locations } = useFecthLocations()
-
   const { isDeleteId, setIsDeleteId } = useStoreDeleteCandidate()
   const { selectedCandidateId, setSelectedCandidateId } = useCandidateStore()
-  const { handleSubmit, handleChange, candidatesUpdate } = useFetchUpdateCandidate(candidates, setCandidates)
-
+  const { handleEdit, handleChange, candidatesUpdate } = useFetchUpdateCandidate(candidates, setCandidates)
   const { id } = getUserFromLocalStorage()
 
   const handleEditClick = (candidateId) => {
@@ -28,28 +25,30 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
   useEffect(()=>{
     
     if (isDeleteId) {
-      document.startViewTransition(()=>{
-        flushSync(()=>{
-          const nuevoArray = candidates.filter(candidate => (candidate.candidate_id !== isDeleteId ));
-          setIsDeleteId(null)
-          setCandidates(nuevoArray)
+      if(!document.startViewTransition){
+        const nuevoArray = candidates.filter(candidate => (candidate.candidate_id !== isDeleteId ));
+        setIsDeleteId(null)
+        setCandidates(nuevoArray)
+      }else{
+        document.startViewTransition(()=>{
+          flushSync(()=>{
+            const nuevoArray = candidates.filter(candidate => (candidate.candidate_id !== isDeleteId ));
+            setIsDeleteId(null)
+            setCandidates(nuevoArray)
+          })
         })
-      })
+      }
+
     }
 
-
-  },[isDeleteId, candidatesUpdate, candidates])
-
-
+  },[isDeleteId, candidatesUpdate, candidates, setIsDeleteId, setCandidates])
 
   return (
     <>
       {
-      candidates 
-      ? 
       candidates?.map((candidate) => (
 
-        <tr style={{viewTransitionName: `name-transition-${candidate.candidate_id}`, zIndex: '0', position: 'relative'}} key={candidate.candidate_id} id={`candidate-${candidate.candidate_id}`} className={`border-b hover:bg-gray-700 bg-gray-800 border-gray-700`}>
+        <tr style={{viewTransitionName: `name-transition-${candidate.candidate_id}`}} key={candidate.candidate_id} id={`candidate-${candidate.candidate_id}`} className={`border-b hover:bg-gray-700 bg-gray-800 border-gray-700`}>
           <td className="w-4 p-4">
             <div className="flex items-center">
               <input id={`checkbox-table-search-{${candidate.candidate_id}}`} type="checkbox" className="candidatescheckbox w-4 h-4 text-blue-600 rounded focus:ring-blue-600 ring-offset-gray-800 focus:ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600"/>
@@ -232,7 +231,7 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
               <button 
                 className='w-full text-blue-500' 
                 onClick={() => {
-                  handleSubmit(id , candidate.candidate_id) 
+                  handleEdit(id , candidate.candidate_id) 
                   setSelectedCandidateId(null)}
                 }
               >
@@ -242,15 +241,13 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
            </td>
         </tr>
       ))
-      :
-      null
-      }
+    }
     </>
   )
 }
 TbodyCandidates.propTypes = {
   candidates: PropTypes.array,
-  className: PropTypes.string
+  setCandidates: PropTypes.func
 }
 
 export default TbodyCandidates;

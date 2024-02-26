@@ -318,7 +318,7 @@ export const useFetchUpdateCandidate =  (candidatess, setCandidatess) => {
 
   }
 
-  const handleSubmit = async (user_id, candidate_id) => {
+  const handleEdit = async (user_id, candidate_id) => {
 
     const url = `${URL}api/candidates/update?user_id=${user_id}&candidate_id=${candidate_id}`
 
@@ -388,5 +388,5 @@ export const useFetchUpdateCandidate =  (candidatess, setCandidatess) => {
   }
 
   
-  return { handleSubmit, handleChange, body, candidatess }
+  return { handleEdit, handleChange, body, candidatess }
 }

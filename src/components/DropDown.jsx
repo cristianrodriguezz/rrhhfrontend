@@ -12,8 +12,11 @@ const DropDown = ({ show, candidate_id, user_id, onEditClick  }) => {
     onEditClick()
   }
   const handleClickDelete = () => {
-    deleteCandidate(user_id,candidate_id)
-    setIsDeleteId(candidate_id)
+    const confirmed = confirm("¿Estás seguro de que deseas eliminar este candidato?");
+    if (confirmed) {
+      deleteCandidate(user_id,candidate_id)
+      setIsDeleteId(candidate_id)
+    }
   }
 
   return (
