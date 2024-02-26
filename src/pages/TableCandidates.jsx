@@ -7,6 +7,7 @@ import Filters from "../components/Filters"
 import FiltersAddContainer from "../components/FiltersAddContainer"
 import getUserFromLocalStorage from "../utils/getUserLocalStorage"
 import Search from "../components/filters/Search"
+import { ToastContainer } from "react-toastify"
 
 const TableCandidates = () => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -48,6 +49,18 @@ const TableCandidates = () => {
         onPageChanged={handlePageChange}
         className="inline-flex -space-x-px text-sm"
       />
+        <ToastContainer
+          position="top-center"
+          autoClose={955}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
     </div>
   )
 }

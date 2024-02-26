@@ -10,6 +10,10 @@ import getUserFromLocalStorage from '../utils/getUserLocalStorage';
 import Download from './icons/Download';
 import CheckOut from './icons/CheckOut';
 import CheckIn from './icons/CheckIn';
+import { handleCopyClipboard } from '../utils/handleCopyClipboard';
+import Copy from './icons/Copy';
+import { handleClickWasap } from '../utils/handleClickWasap';
+import Wasap from './icons/Wasap';
 
 
 const TbodyCandidates = ({ candidates, setCandidates }) => {
@@ -83,7 +87,7 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
                 className={`filters candidate-input-${candidate.candidate_id}  bg-slate-600 w-full placeholder-slate-300 text-sm rounded`}
               />
             ) : (
-              <p className={`candidate-p-${candidate.candidate_id} `}>{candidate.last_name}</p>
+              <p className={`candidate-p-${candidate.candidate_id}`}>{candidate.last_name}</p>
             )}
           </td>
           <td className={'w-[8%] px-3'}>
@@ -111,7 +115,15 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
               className={`filters candidate-input-${candidate.candidate_id}  bg-slate-600 w-full placeholder-slate-300 text-sm rounded`}
             />
             :
-            <p className={`candidate-p-${candidate.candidate_id}`}>{candidate.phone_number}</p>
+            <div className='flex gap-2 items-center'>
+              <div onClick={() => handleCopyClipboard(candidate.phone_number)} className='cursor-pointer'>
+                <Copy/>
+              </div>
+              <div onClick={() => handleClickWasap(candidate.phone_number)}>
+                <Wasap/>
+              </div>
+            </div>
+            
             }
           </td>
           <td className={'w-[9%] px-3'}>
@@ -138,7 +150,7 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
               onChange={handleChange}
             />
               :
-              <div>{candidate.has_own_transport ? <CheckIn/>: <CheckOut/>}</div>
+              <div>{candidate.has_own_transport ? <CheckIn/>:<CheckOut/>}</div>
             }
           </td>
           <td className={'w-[3.8%] px-3'}>
@@ -152,7 +164,7 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
               onChange={handleChange}
             />
             :
-             <p className={`candidate-p-${candidate.candidate_id}`}>{candidate.has_work_experience ? <CheckIn/>: <CheckOut/>}</p>
+             <p className={`candidate-p-${candidate.candidate_id}`}>{candidate.has_work_experience ? <CheckIn/>:<CheckOut/>}</p>
             }
           </td>
           <td className={'w-[17%] px-3'}>
