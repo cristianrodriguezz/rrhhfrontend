@@ -25,6 +25,7 @@ const Actions = ({ candidate_id, onEditClick }) => {
 }
 Actions.propTypes = {
   candidate_id: PropTypes.number.isRequired,
+  onEditClick: PropTypes.func
 }
 
 export default Actions

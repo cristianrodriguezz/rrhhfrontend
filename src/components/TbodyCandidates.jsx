@@ -30,6 +30,7 @@ const TbodyCandidates = ({ candidates, setCandidates }) => {
         setIsDeleteId(null)
         setCandidates(nuevoArray)
       }else{
+        
         document.startViewTransition(()=>{
           flushSync(()=>{
             const nuevoArray = candidates.filter(candidate => (candidate.candidate_id !== isDeleteId ));
