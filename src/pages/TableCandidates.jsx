@@ -8,11 +8,18 @@ import FiltersAddContainer from "../components/FiltersAddContainer"
 import getUserFromLocalStorage from "../utils/getUserLocalStorage"
 import Search from "../components/filters/Search"
 import { ToastContainer } from "react-toastify"
+import { useStoreCheckbox } from "../hooks/useStore"
+
+import Export from "../components/icons/Export"
+import { handleClickExportExcel } from "../utils/handleClickExportExcel"
 
 const TableCandidates = () => {
   const [currentPage, setCurrentPage] = useState(0)
   const [inputName, setInputName] = useState('')
   const user = getUserFromLocalStorage()
+
+  const { checkboxIds } = useStoreCheckbox()
+
 
   const { debouncedValue, loadingDebounce } = useDebounce(inputName, 500)
   const { candidates, totalPages, loading, error, setCandidates } = useFetchCandidates({
@@ -40,6 +47,18 @@ const TableCandidates = () => {
         <Filters setCurrentPage={setCurrentPage}/>
       </div>
       <FiltersAddContainer/>
+      <div className="h-11 flex min-w-[1119px]">
+      {
+        checkboxIds.length !== 0 &&
+        (
+        <div className="flex size-full items-center  bg-gray-700 border-b border-slate-600 rounded-t-lg">
+          <button onClick={() => handleClickExportExcel(checkboxIds)} className="flex gap-2 ml-4 p-1 rounded-lg text-slate-300 bg-slate-800">Exportar excel <Export/></button>
+        </div>
+        )
+      }
+
+      </div>
+
       <Table candidates={candidates} setCandidates={setCandidates}/>
 
       <Pagination
