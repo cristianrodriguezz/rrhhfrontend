@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useStoreFilterBackend } from './useStore';
+import { useStoreFilterBackend } from '../hooks/useStore';
 import { useNavigate } from 'react-router-dom';
 import getTokenLocalStorage from '../utils/getTokenLocalStorage';
 
@@ -388,5 +388,32 @@ export const useFetchUpdateCandidate =  (candidatess, setCandidatess) => {
   }
 
   
-  return { handleEdit, handleChange, body, candidatess }
+  return { handleEdit, handleChange }
+}
+export const useFetchData = (service, ...params) => {
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const response = await service(...params)
+
+        const data = await response.json()
+        setData(data)
+      } catch (error) {
+        console.error('Error al obtener los datos:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+
+  }, [...params])
+
+
+  return { data, setData , loading }
 }

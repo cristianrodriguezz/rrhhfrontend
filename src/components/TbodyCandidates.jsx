@@ -7,7 +7,6 @@ import { flushSync } from 'react-dom';
 import { useEffect } from 'react';
 import { useCandidateStore, useStoreDeleteCandidate } from '../hooks/useStore';
 import getUserFromLocalStorage from '../utils/getUserLocalStorage';
-import Download from './icons/Download';
 import CheckOut from './icons/CheckOut';
 import CheckIn from './icons/CheckIn';
 import { handleCopyClipboard } from '../utils/handleCopyClipboard';

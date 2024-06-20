@@ -12,9 +12,9 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path='/' element={<Login/>}/>
         <Route path='/tabla' element={<TableCandidates/>}/>
         <Route path='/reclutar' element={<UploadCandidate/>}/>
-        <Route path='/' element={<Login/>}/>
         <Route path="*" element={<PageNotFound/>} />
         <Route path="/ok" element={<UploadCandidateOk/>} />
       </Routes>

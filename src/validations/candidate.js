@@ -18,6 +18,7 @@ export const candidateSchema = yup.object({
   has_own_transport: yup.boolean(),
   has_work_experience: yup.boolean(),
   current_position_id: yup.number().integer().required('Debes completar tu posición'),
+  province_id: yup.number().integer().required('Debes completar la provincia'),
   education_id: yup.number().integer().required('Debes completar tu educación'),
   availability_id: yup.number().integer().required('Debes completar tu disponibilidad'),
   location_id: yup.number().integer().required('Debes completar tu localidad'),

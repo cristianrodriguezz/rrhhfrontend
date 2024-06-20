@@ -18,6 +18,7 @@ import Email from './componentsCandidateForm/Email';
 import DragAndDropCv from './componentsCandidateForm/DragAndDropCv';
 import { useNavigate } from 'react-router-dom';
 import HasEnglish from './componentsCandidateForm/HasEnglish';
+import SelectProvince from './componentsCandidateForm/SelectProvince';
 
 
 const CandidateForm = ({ user_id }) => {
@@ -30,7 +31,7 @@ const CandidateForm = ({ user_id }) => {
     onSubmit: (values, formikBag) => handleSubmit(values, user_id, formikBag, navigate ),
   })
 
-
+  console.log(formik.values);
   return (
     <form onSubmit={formik.handleSubmit} className='max-w-md m-1 text-slate-900'>
       <h1 className='text-center font-bold text-3xl my-3'>Luciana HR selection</h1>
@@ -57,7 +58,15 @@ const CandidateForm = ({ user_id }) => {
         }
         <SelectEducation formik={formik}/>
         <SelectAvailability formik={formik}/>
-        <SelectLocation formik={formik}/>
+        <SelectProvince formik={formik}/>
+        {
+          formik.values.province_id === 2 &&
+          <SelectLocation formik={formik} province='Mendoza' />
+        }
+        {
+          formik.values.province_id === 1 &&
+          <SelectLocation formik={formik} province='San Luis' />
+        }
         <Email formik={formik}/>
       </div>
       <DragAndDropCv formik={formik}/>

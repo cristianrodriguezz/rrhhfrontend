@@ -1,0 +1,12 @@
+{
+  "provinces": [
+    {
+      "id": "1",
+      "name": "Mendoza"
+    },
+    {
+      "id": "2",
+      "name": "San Luis"
+    }
+  ]
+}

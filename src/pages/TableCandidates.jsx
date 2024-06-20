@@ -47,7 +47,7 @@ const TableCandidates = () => {
         <Filters setCurrentPage={setCurrentPage}/>
       </div>
       <FiltersAddContainer/>
-      <div className="h-11 flex min-w-[1119px]">
+      <div className="h-11 flex min-w-[1146.2px]">
       {
         checkboxIds.length !== 0 &&
         (
